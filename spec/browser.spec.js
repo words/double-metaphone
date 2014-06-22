@@ -23,11 +23,13 @@ function doubleMetaphone(value) {
         index = 0,
         length = value.length,
         last = length - 1,
-        isSlavoGermanic, isGermanic, subvalue, next, prev, nextnext;
+        isSlavoGermanic, isGermanic, subvalue, next, prev, nextnext,
+        characters;
 
     value = String(value).toUpperCase() + '     ';
     isSlavoGermanic = SLAVO_GERMANIC.test(value);
     isGermanic = GERMANIC.test(value);
+    characters = value.split('');
 
     /* skip this at beginning of word */
     if (INITIAL_EXCEPTIONS.test(value)) {
@@ -35,7 +37,7 @@ function doubleMetaphone(value) {
     }
 
     /* Initial X is pronounced Z, which maps to S. (E.g. 'Xavier') */
-    if (value.charAt(0) === 'X') {
+    if (characters[0] === 'X') {
         primary += 'S';
         secondary += 'S';
 
@@ -43,11 +45,11 @@ function doubleMetaphone(value) {
     }
 
     while (index < length) {
-        prev = value.charAt(index - 1);
-        next = value.charAt(index + 1);
-        nextnext = value.charAt(index + 2);
+        prev = characters[index - 1];
+        next = characters[index + 1];
+        nextnext = characters[index + 2];
 
-        switch (value.charAt(index)) {
+        switch (characters[index]) {
             case 'A':
             case 'E':
             case 'I':
@@ -87,7 +89,7 @@ function doubleMetaphone(value) {
             case 'C':
                 /* Various Germanic: */
                 if (prev === 'A' && next === 'H' && nextnext !== 'I' &&
-                    !VOWELS.test(value.charAt(index - 2)) &&
+                    !VOWELS.test(characters[index - 2]) &&
                     (
                         nextnext !== 'E' || (
                             subvalue = value.slice(index - 2, index + 4) &&
@@ -127,7 +129,7 @@ function doubleMetaphone(value) {
                     // find 'michael'
                     if (
                         index > 0 && nextnext === 'A' &&
-                        value.charAt(index + 3) === 'E'
+                        characters[index + 3] === 'E'
                     ) {
                         primary += 'K';
                         secondary += 'X';
@@ -205,7 +207,7 @@ function doubleMetaphone(value) {
                 // double 'C', but not McClellan'
                 if (
                     next === 'C' &&
-                    !(index === 1 && value.charAt(0) === 'M')
+                    !(index === 1 && characters[0] === 'M')
                 ) {
                     // 'bellocchio' but not 'bacchus'
                     if (
@@ -380,7 +382,7 @@ function doubleMetaphone(value) {
                         // e.g. 'hugh'
                         (
                             // The comma is not a bug.
-                            subvalue = value.charAt(index - 2),
+                            subvalue = characters[index - 2],
                             subvalue === 'B' ||
                             subvalue === 'H' ||
                             subvalue === 'D'
@@ -388,7 +390,7 @@ function doubleMetaphone(value) {
                         // e.g. 'bough'
                         (
                             // The comma is not a bug.
-                            subvalue = value.charAt(index - 3),
+                            subvalue = characters[index - 3],
                             subvalue === 'B' ||
                             subvalue === 'H' ||
                             subvalue === 'D'
@@ -396,7 +398,7 @@ function doubleMetaphone(value) {
                         // e.g. 'broughton'
                         (
                             // The comma is not a bug.
-                            subvalue = value.charAt(index - 4),
+                            subvalue = characters[index - 4],
                             subvalue === 'B' ||
                             subvalue === 'H'
                         )
@@ -410,7 +412,7 @@ function doubleMetaphone(value) {
                     // 'tough'
                     if (
                         index > 2 && prev === 'U' &&
-                        G_FOR_F.test(value.charAt(index - 3))
+                        G_FOR_F.test(characters[index - 3])
                     ) {
                         primary += 'F';
                         secondary += 'F';
@@ -427,7 +429,7 @@ function doubleMetaphone(value) {
                 if (next === 'N') {
                     if (
                         index === 1 &&
-                        VOWELS.test(value.charAt(0)) &&
+                        VOWELS.test(characters[0]) &&
                         !isSlavoGermanic
                     ) {
                         primary += 'KN';
@@ -553,7 +555,7 @@ function doubleMetaphone(value) {
                         value.slice(0, 4) === 'SAN ' ||
                         (
                             index === 0 &&
-                            value.charAt(index + 4) === ' '
+                            characters[index + 4] === ' '
                         )
                     ) {
                         primary += 'H';
@@ -630,7 +632,7 @@ function doubleMetaphone(value) {
                             prev === 'A' && nextnext === 'E' &&
                             (
                                 // The comma is not a bug.
-                                subvalue = value.charAt(last),
+                                subvalue = characters[last],
                                 (subvalue === 'A' || subvalue === 'O') ||
                                 ALLE.test(value.slice(last - 1, length))
                             )
@@ -725,11 +727,11 @@ function doubleMetaphone(value) {
                     index === last &&
                     !isSlavoGermanic &&
                     prev === 'E' &&
-                    value.charAt(index - 2) === 'I' &&
-                    value.charAt(index - 4) !== 'M' &&
+                    characters[index - 2] === 'I' &&
+                    characters[index - 4] !== 'M' &&
                     (
                         // The comma is not a bug.
-                        subvalue = value.charAt(index - 3),
+                        subvalue = characters[index - 3],
                         subvalue !== 'E' && subvalue !== 'A'
                     )
                 ) {
@@ -843,8 +845,8 @@ function doubleMetaphone(value) {
 
                         if (
                             index === 0 &&
-                            !VOWELS.test(value.charAt(3)) &&
-                            value.charAt(3) !== 'W'
+                            !VOWELS.test(characters[3]) &&
+                            characters[3] !== 'W'
                         ) {
                             primary += 'X';
                             secondary += 'S';
@@ -909,7 +911,7 @@ function doubleMetaphone(value) {
                 if (
                     next === 'I' &&
                     nextnext === 'O' &&
-                    value.charAt(index + 3) === 'N'
+                    characters[index + 3] === 'N'
                 ) {
                     primary += 'X';
                     secondary += 'X';
@@ -942,7 +944,7 @@ function doubleMetaphone(value) {
                         isGermanic ||
                         (
                             (nextnext === 'O' || nextnext === 'A') &&
-                            value.charAt(index + 3) === 'M'
+                            characters[index + 3] === 'M'
                         )
                     ) {
                         primary += 'T';
@@ -1000,7 +1002,7 @@ function doubleMetaphone(value) {
                 }
 
                 // Arnow should match Arnoff
-                subvalue = value.charAt(index + 3);
+                subvalue = characters[index + 3];
                 if (
                     (
                         (prev === 'E' || prev === 'O') &&
@@ -1022,7 +1024,7 @@ function doubleMetaphone(value) {
                 if (
                     next === 'I' &&
                     (nextnext === 'C' || nextnext === 'T') &&
-                    value.charAt(index + 3) === 'Z'
+                    characters[index + 3] === 'Z'
                 ) {
                     primary += 'TS';
                     secondary += 'FX';
@@ -1037,7 +1039,7 @@ function doubleMetaphone(value) {
                 break;
             case 'X':
                 // french e.g. breaux
-                subvalue = value.charAt(index - 2);
+                subvalue = characters[index - 2];
 
                 if (
                     index === last ||
