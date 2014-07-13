@@ -47,6 +47,37 @@ doubleMetaphone(stemmer("acceptingness")); // [ 'AKSPTNK', 'AKSPTNK' ]
 doubleMetaphone(stemmer("allegrettos")); // [ 'ALKRT', 'AKRT' ]
 ```
 
+## Other Double Metaphone implementations
+
+- [NaturalNode/natural](https://github.com/NaturalNode/natural) — Bit [buggy](https://github.com/NaturalNode/natural/issues/173);
+- [hgoebl/doublemetaphone](https://github.com/hgoebl/doublemetaphone) — Constructors, more options;
+- [Yomguithereal/clj-fuzzy](https://github.com/Yomguithereal/clj-fuzzy) — Clojure, bit slow.
+
+## Benchmark
+
+Run the benchmark yourself:
+
+```sh
+$ npm run install-benchmark # Just once of course.
+$ npm run benchmark
+```
+
+On a MacBook Air, it runs about 467,000 op/s, which is marginally faster than [hgoebl/doublemetaphone](https://github.com/hgoebl/doublemetaphone).
+
+```
+           double-metaphone — this module
+  467 op/s » op/s * 1,000
+
+           doublemetaphone
+  428 op/s » op/s * 1,000
+
+           natural
+  167 op/s » op/s * 1,000
+
+           clj-fuzzy
+   12 op/s » op/s * 1,000
+```
+
 ## License
 
   MIT
