@@ -11,9 +11,10 @@
   "author": "Titus Wormer <tituswormer@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^0.7.4",
     "istanbul": "^0.3.0",
     "jscs": "^1.5.3",
-    "eslint": "^0.7.4",
+    "matcha": "^0.5.0",
     "mocha": "~1.20.1"
   },
   "repository": {
@@ -23,13 +24,16 @@
   "scripts": {
     "test": "node_modules/.bin/_mocha --reporter spec --check-leaks -u exports spec/double-metaphone.spec.js",
     "test-travis": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks -u exports spec/double-metaphone.spec.js",
-    "lint": "npm run lint-api && npm run lint-test && npm run lint-style",
+    "lint": "npm run lint-api && npm run lint-test && npm run lint-benchmark && npm run lint-style",
     "lint-api": "node_modules/.bin/eslint index.js --env node --env browser --rule 'quotes: [2, single], no-cond-assign: false'",
     "lint-test": "node_modules/.bin/eslint spec/double-metaphone.spec.js --env node --env mocha --rule 'quotes: [2, single], no-loop-func: false'",
+    "lint-benchmark": "node_modules/.bin/eslint benchmark/index.js --env node --global suite,set,bench --rule 'quotes: [2, single]'",
     "lint-style": "node_modules/.bin/jscs index.js spec/double-metaphone.spec.js --reporter=inline",
     "install-browser-test": "npm install browserify",
     "build-browser-test": "node_modules/.bin/browserify spec/double-metaphone.spec.js -o spec/browser.spec.js",
     "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- spec/double-metaphone.spec.js",
+    "install-benchmark": "npm install natural doublemetaphone clj-fuzzy",
+    "benchmark": "node_modules/.bin/matcha",
     "make": "npm run lint && npm run coverage"
   },
   "testling": {
