@@ -2,7 +2,7 @@
   "name": "double-metaphone",
   "repository": "wooorm/double-metaphone",
   "description": "An implementation of the Double Metaphone algorithm by Lawrence Philips",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "keywords": [
     "lawrence",
     "philips",
