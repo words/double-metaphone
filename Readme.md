@@ -59,24 +59,23 @@ doubleMetaphone(stemmer("allegrettos")); // [ 'ALKRT', 'AKRT' ]
 Run the benchmark yourself:
 
 ```sh
-$ npm run install-benchmark # Just once of course.
 $ npm run benchmark
 ```
 
-On a MacBook Air, it runs about 467,000 op/s, which is marginally faster than [hgoebl/doublemetaphone](https://github.com/hgoebl/doublemetaphone).
+On a MacBook Air, it runs about 455,000 op/s.
 
 ```
            double-metaphone — this module
-  479 op/s » op/s * 1,000
+  455 op/s » op/s * 1,000
 
            doublemetaphone
-  444 op/s » op/s * 1,000
+  424 op/s » op/s * 1,000
 
            natural
-  146 op/s » op/s * 1,000
+  171 op/s » op/s * 1,000
 
            clj-fuzzy
-   11 op/s » op/s * 1,000
+   12 op/s » op/s * 1,000
 ```
 
 ## License
