@@ -8,8 +8,8 @@
     "double",
     "metaphone"
   ],
-  "author": "Titus Wormer <tituswormer@gmail.com>",
   "license": "MIT",
+  "author": "Titus Wormer <tituswormer@gmail.com>",
   "devDependencies": {
     "eslint": "^0.8.0",
     "istanbul": "^0.3.0",
