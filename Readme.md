@@ -10,14 +10,19 @@ For even better results, combine it with a stemmer (e.g., my own porter stemmer 
 
 ## Installation
 
-NPM:
+npm:
 ```sh
 $ npm install double-metaphone
 ```
 
-Component.js:
+Component:
 ```sh
 $ component install wooorm/double-metaphone
+```
+
+Bower:
+```sh
+$ bower install double-metaphone
 ```
 
 ## Usage
