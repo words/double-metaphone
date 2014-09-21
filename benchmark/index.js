@@ -1,10 +1,20 @@
 'use strict';
 
-/* eslint-disable no-cond-assign */
+var doubleMetaphone,
+    words,
+    natural,
+    doublemetaphone,
+    cljFuzzy;
 
-var metaphone, source, natural, doublemetaphone, cljFuzzy;
+/**
+ * Module dependencies.
+ */
 
-metaphone = require('..');
+doubleMetaphone = require('..');
+
+/**
+ * Optional module dependencies.
+ */
 
 try {
     natural = require('natural').DoubleMetaphone;
@@ -14,7 +24,7 @@ try {
 
     cljFuzzy = require('clj-fuzzy').phonetics.double_metaphone;
 } catch (error) {
-    throw new Error(
+    console.log(
         '\u001B[0;31m' +
         'The libraries needed by this benchmark could not be found. ' +
         'Please execute:\n' +
@@ -23,8 +33,12 @@ try {
     );
 }
 
-/* The first 1000 words from Letterpress: https://github.com/atebits/Words */
-source = [
+/**
+ * The first 1000 words from Letterpress:
+ *   https://github.com/atebits/Words
+ */
+
+words = [
     'aa',
     'aah',
     'aahed',
@@ -1027,54 +1041,56 @@ source = [
     'acaulescent'
 ];
 
+/**
+ * Benchmark this module.
+ */
+
 suite('double-metaphone — this module', function () {
-    bench('op/s * 1,000', function (next) {
-        var iterator = -1,
-            value;
-
-        while (value = source[++iterator]) {
-            metaphone(value);
-        }
-
-        next();
+    bench('op/s * 1,000', function () {
+        words.forEach(function (word) {
+            doubleMetaphone(word);
+        });
     });
 });
 
-suite('doublemetaphone', function () {
-    bench('op/s * 1,000', function (next) {
-        var iterator = -1,
-            value;
+/**
+ * Benchmark `doublemetaphone`.
+ */
 
-        while (value = source[++iterator]) {
-            doublemetaphone.doubleMetaphone(value);
-        }
-
-        next();
+if (doublemetaphone) {
+    suite('doublemetaphone', function () {
+        bench('op/s * 1,000', function () {
+            words.forEach(function (word) {
+                doublemetaphone.doubleMetaphone(word);
+            });
+        });
     });
-});
+}
 
-suite('natural', function () {
-    bench('op/s * 1,000', function (next) {
-        var iterator = -1,
-            value;
+/**
+ * Benchmark `natural`.
+ */
 
-        while (value = source[++iterator]) {
-            natural.process(value);
-        }
-
-        next();
+if (natural) {
+    suite('natural', function () {
+        bench('op/s * 1,000', function () {
+            words.forEach(function (word) {
+                natural.process(word);
+            });
+        });
     });
-});
+}
 
-suite('clj-fuzzy', function () {
-    bench('op/s * 1,000', function (next) {
-        var iterator = -1,
-            value;
+/**
+ * Benchmark `clj-fuzzy`.
+ */
 
-        while (value = source[++iterator]) {
-            cljFuzzy(value);
-        }
-
-        next();
+if (cljFuzzy) {
+    suite('clj-fuzzy', function () {
+        bench('op/s * 1,000', function () {
+            words.forEach(function (word) {
+                cljFuzzy(word);
+            });
+        });
     });
-});
+}
