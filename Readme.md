@@ -67,16 +67,16 @@ On a MacBook Air, it runs about 467,000 op/s, which is marginally faster than [h
 
 ```
            double-metaphone — this module
-  467 op/s » op/s * 1,000
+  479 op/s » op/s * 1,000
 
            doublemetaphone
-  428 op/s » op/s * 1,000
+  444 op/s » op/s * 1,000
 
            natural
-  167 op/s » op/s * 1,000
+  146 op/s » op/s * 1,000
 
            clj-fuzzy
-   12 op/s » op/s * 1,000
+   11 op/s » op/s * 1,000
 ```
 
 ## License
