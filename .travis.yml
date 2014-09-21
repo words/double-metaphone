@@ -1,6 +1,13 @@
-language: "node_js"
-script: "npm run-script test-travis"
+language: node_js
+script: npm run-script test-travis
 node_js:
-  - "0.10"
-  - "0.11"
-after_script: "npm install coveralls@2.10.0 && cat ./coverage/lcov.info | coveralls"
+- '0.10'
+- '0.11'
+after_script: npm install coveralls@2.10.0 && cat ./coverage/lcov.info | coveralls
+deploy:
+  provider: npm
+  email: tituswormer@gmail.com
+  api_key:
+    secure: CYGeMQzd9EqGim69tpoKmPBWaOAN9HQluMDrRo0tulhcccqXsGfv3ekxDngLdHtkGHFS/kjQBDQCUzFyYayT6hpdt3f1u5bpU/8L4Es4UYIXbkbHV3/dQ2pUaNZtYWUfNPDKWbFy5Hmz2O4wzRdn4291XqA1k7K839NyLmearOI=
+  on:
+    repo: wooorm/double-metaphone
