@@ -1,11 +1,20 @@
 'use strict';
 
-var doubleMetaphone, assert;
+var doubleMetaphone,
+    assert;
+
+/**
+ * Module dependencies.
+ */
 
 doubleMetaphone = require('..');
 assert = require('assert');
 
-describe('doubleMetaphone()', function () {
+/**
+ * Unit tests.
+ */
+
+describe('doubleMetaphone(value)', function () {
     it('should be of type `function`', function () {
         assert(typeof doubleMetaphone === 'function');
     });
@@ -923,25 +932,41 @@ describe('doubleMetaphone()', function () {
     it('should transform Z to S', function () {
         assert(doubleMetaphone('z')[0] === 'S');
     });
+});
 
-    it('should be compatible with (Node) Natural', function () {
-        // Source:
-        // https://github.com/NaturalNode/natural
-        var attribute, tests, phonetics;
+/**
+ * Tests that this module returns the same results
+ * as Natural.
+ *
+ * Source:
+ *   https://github.com/NaturalNode/natural
+ */
 
-        tests = {
-            'complete' : ['KMPLT', 'KMPLT'],
-            'Matrix' : ['MTRKS', 'MTRKS'],
-            'appropriate' : ['APRPRT', 'APRPRT'],
-            'intervention' : ['ANTRFNXN', 'ANTRFNXN'],
-            'Français' : ['FRNS', 'FRNSS']
-        };
+describe('Compatibility with Natural', function () {
+    var fixtures;
 
-        for (attribute in tests) {
-            phonetics = doubleMetaphone(attribute);
-            // console.log(phonetics, tests[attribute]);
-            assert(phonetics[0] === tests[attribute][0]);
-            assert(phonetics[1] === tests[attribute][1]);
-        }
+    fixtures = {
+        'complete' : ['KMPLT', 'KMPLT'],
+        'Matrix' : ['MTRKS', 'MTRKS'],
+        'appropriate' : ['APRPRT', 'APRPRT'],
+        'intervention' : ['ANTRFNXN', 'ANTRFNXN'],
+        'Français' : ['FRNS', 'FRNSS']
+    };
+
+    Object.keys(fixtures).forEach(function (fixture) {
+        var result;
+
+        result = fixtures[fixture];
+
+        it('should process `' + fixture + '` to `' + result[0] + '` and `' +
+            result[1] + '`', function () {
+                var phonetics;
+
+                phonetics = doubleMetaphone(fixture);
+
+                assert(phonetics[0] === result[0]);
+                assert(phonetics[1] === result[1]);
+            }
+        );
     });
 });
