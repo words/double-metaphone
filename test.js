@@ -7,7 +7,7 @@ var doubleMetaphone,
  * Module dependencies.
  */
 
-doubleMetaphone = require('..');
+doubleMetaphone = require('./');
 assert = require('assert');
 
 /**

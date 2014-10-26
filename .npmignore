@@ -6,7 +6,7 @@ bower_components/
 components/
 coverage/
 node_modules/
-spec/
 bower.json
 component.json
+test.js
 History.md
