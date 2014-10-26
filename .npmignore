@@ -1,6 +1,5 @@
 .*
 *.log
-benchmark/
 build/
 bower_components/
 components/
@@ -8,5 +7,6 @@ coverage/
 node_modules/
 bower.json
 component.json
+benchmark.js
 test.js
 History.md

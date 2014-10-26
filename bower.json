@@ -20,11 +20,11 @@
     ".*",
     "*.log",
     "*.md",
-    "benchmark/",
     "build/",
     "components/",
     "coverage/",
     "node_modules/",
+    "benchmark.js",
     "test.js",
     "component.json",
     "package.json"

@@ -10,7 +10,7 @@ var doubleMetaphone,
  * Module dependencies.
  */
 
-doubleMetaphone = require('..');
+doubleMetaphone = require('./');
 
 /**
  * Optional module dependencies.
