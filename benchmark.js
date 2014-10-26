@@ -1,26 +1,37 @@
 'use strict';
 
-var doubleMetaphone,
-    words,
-    natural,
-    doublemetaphone;
-
 /**
- * Module dependencies.
+ * Dependencies.
  */
+
+var doubleMetaphone;
 
 doubleMetaphone = require('./');
 
 /**
- * Optional module dependencies.
+ * Optional dependencies.
  */
+
+var natural,
+    doublemetaphone,
+    exception;
 
 try {
     natural = require('natural').DoubleMetaphone;
+    natural = natural.process.bind(natural);
+} catch (error) {
+    exception = error;
+}
 
+try {
     doublemetaphone = new (require('doublemetaphone'))();
     doublemetaphone.setMaxCodeLen(Infinity);
+    doublemetaphone = doublemetaphone.doubleMetaphone.bind(doublemetaphone);
 } catch (error) {
+    exception = error;
+}
+
+if (exception) {
     console.log(
         '\u001B[0;31m' +
         'The libraries needed by this benchmark could not be found. ' +
@@ -31,11 +42,15 @@ try {
 }
 
 /**
+ * Fixtures.
+ *
  * The first 1000 words from Letterpress:
- *   https://github.com/atebits/Words
+ *   https://github.com/atebits/fixtures
  */
 
-words = [
+var fixtures;
+
+fixtures = [
     'aa',
     'aah',
     'aahed',
@@ -1039,14 +1054,22 @@ words = [
 ];
 
 /**
+ * Do something for every word.
+ *
+ * @param {function(word)} callback
+ */
+
+function eachWord(callback) {
+    fixtures.forEach(callback);
+}
+
+/**
  * Benchmark this module.
  */
 
 suite('double-metaphone — this module', function () {
     bench('op/s * 1,000', function () {
-        words.forEach(function (word) {
-            doubleMetaphone(word);
-        });
+        eachWord(doubleMetaphone);
     });
 });
 
@@ -1057,9 +1080,7 @@ suite('double-metaphone — this module', function () {
 if (doublemetaphone) {
     suite('doublemetaphone', function () {
         bench('op/s * 1,000', function () {
-            words.forEach(function (word) {
-                doublemetaphone.doubleMetaphone(word);
-            });
+            eachWord(doublemetaphone);
         });
     });
 }
@@ -1071,9 +1092,7 @@ if (doublemetaphone) {
 if (natural) {
     suite('natural', function () {
         bench('op/s * 1,000', function () {
-            words.forEach(function (word) {
-                natural.process(word);
-            });
+            eachWord(natural);
         });
     });
 }
