@@ -1,4 +1,20 @@
 
+n.n.n / 2014-10-26
+==================
+
+ * Refactor benchmark
+ * Refactor test
+ * Refactor property order in `package.json`, `component.json`, `bower.json`
+ * Add `.eslintrc`
+ * Remove clj-fuzzy from benchmark
+ * Refactor `.jscs.json`
+ * Move `benchmark/index.js` to `index.js`
+ * Move `spec/double-metaphone.spec.js` to `test.js`
+ * Update `.gitignore`, `.npmignore`, bower ignore
+ * Refactor test to disallow space after object keys
+ * Disallow space after object keys in `.jscs.json`
+ * Update eslint, mocha
+
 0.1.1 / 2014-09-21
 ==================
 
