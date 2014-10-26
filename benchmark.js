@@ -3,8 +3,7 @@
 var doubleMetaphone,
     words,
     natural,
-    doublemetaphone,
-    cljFuzzy;
+    doublemetaphone;
 
 /**
  * Module dependencies.
@@ -21,8 +20,6 @@ try {
 
     doublemetaphone = new (require('doublemetaphone'))();
     doublemetaphone.setMaxCodeLen(Infinity);
-
-    cljFuzzy = require('clj-fuzzy').phonetics.double_metaphone;
 } catch (error) {
     console.log(
         '\u001B[0;31m' +
@@ -1076,20 +1073,6 @@ if (natural) {
         bench('op/s * 1,000', function () {
             words.forEach(function (word) {
                 natural.process(word);
-            });
-        });
-    });
-}
-
-/**
- * Benchmark `clj-fuzzy`.
- */
-
-if (cljFuzzy) {
-    suite('clj-fuzzy', function () {
-        bench('op/s * 1,000', function () {
-            words.forEach(function (word) {
-                cljFuzzy(word);
             });
         });
     });
