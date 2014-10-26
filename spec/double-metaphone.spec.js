@@ -946,11 +946,11 @@ describe('Compatibility with Natural', function () {
     var fixtures;
 
     fixtures = {
-        'complete' : ['KMPLT', 'KMPLT'],
-        'Matrix' : ['MTRKS', 'MTRKS'],
-        'appropriate' : ['APRPRT', 'APRPRT'],
-        'intervention' : ['ANTRFNXN', 'ANTRFNXN'],
-        'Français' : ['FRNS', 'FRNSS']
+        'complete': ['KMPLT', 'KMPLT'],
+        'Matrix': ['MTRKS', 'MTRKS'],
+        'appropriate': ['APRPRT', 'APRPRT'],
+        'intervention': ['ANTRFNXN', 'ANTRFNXN'],
+        'Français': ['FRNS', 'FRNSS']
     };
 
     Object.keys(fixtures).forEach(function (fixture) {
