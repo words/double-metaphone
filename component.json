@@ -2,15 +2,15 @@
   "name": "double-metaphone",
   "version": "0.1.1",
   "description": "An implementation of the Double Metaphone algorithm by Lawrence Philips",
+  "license": "MIT",
   "keywords": [
     "lawrence",
     "philips",
     "double",
     "metaphone"
   ],
-  "license": "MIT",
+  "repository": "wooorm/double-metaphone",
   "scripts" : [
     "index.js"
-  ],
-  "repository": "wooorm/double-metaphone"
+  ]
 }

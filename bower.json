@@ -2,13 +2,13 @@
   "name": "double-metaphone",
   "main": "index.js",
   "description": "An implementation of the Double Metaphone algorithm by Lawrence Philips",
+  "license": "MIT",
   "keywords": [
     "lawrence",
     "philips",
     "double",
     "metaphone"
   ],
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/wooorm/double-metaphone.git"
