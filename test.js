@@ -1,17 +1,17 @@
 'use strict';
 
+/**
+ * Dependencies.
+ */
+
 var doubleMetaphone,
     assert;
-
-/**
- * Module dependencies.
- */
 
 doubleMetaphone = require('./');
 assert = require('assert');
 
 /**
- * Unit tests.
+ * Tests.
  */
 
 describe('doubleMetaphone(value)', function () {
@@ -20,7 +20,10 @@ describe('doubleMetaphone(value)', function () {
     });
 
     it('should ignore casing', function () {
-        var result = doubleMetaphone('hiccups');
+        var result;
+
+        result = doubleMetaphone('hiccups');
+
         assert(doubleMetaphone('HICCUPS')[0] === result[0]);
         assert(doubleMetaphone('HICCUPS')[1] === result[1]);
         assert(doubleMetaphone('HiCcUpS')[0] === result[0]);
@@ -52,24 +55,30 @@ describe('doubleMetaphone(value)', function () {
     });
 
     it('should transform all initial vowels to A', function () {
-        var vowels = 'aeiouy',
-            iterator = -1,
+        var vowels,
+            index,
             vowel;
 
-        while (vowels[++iterator]) {
-            vowel = vowels[iterator];
+        vowels = 'aeiouy';
+        index = -1;
+
+        while (vowels[++index]) {
+            vowel = vowels[index];
 
             assert(doubleMetaphone(vowel)[0] === 'A');
         }
     });
 
     it('should drop all non-initial vowels', function () {
-        var vowels = 'aeiouy',
-            iterator = -1,
+        var vowels,
+            index,
             vowel;
 
-        while (vowels[++iterator]) {
-            vowel = vowels[iterator];
+        vowels = 'aeiouy';
+        index = -1;
+
+        while (vowels[++index]) {
+            vowel = vowels[index];
 
             assert(doubleMetaphone('b' + vowel)[0].length === 1);
         }
@@ -201,14 +210,20 @@ describe('doubleMetaphone(value)', function () {
     });
 
     it('should transform the C to X and K, when followed by H', function () {
-        var metaphone = doubleMetaphone('achievement');
+        var metaphone;
+
+        metaphone = doubleMetaphone('achievement');
+
         assert(metaphone[0].charAt(1) === 'X');
         assert(metaphone[1].charAt(1) === 'K');
     });
 
     it('should transform the C to S and X, when followed by Z and not ' +
         'preceded by WI', function () {
-            var metaphone = doubleMetaphone('czerny');
+            var metaphone;
+
+            metaphone = doubleMetaphone('czerny');
+
             assert(metaphone[0].charAt(0) === 'S');
             assert(metaphone[1].charAt(0) === 'X');
         }
@@ -220,18 +235,25 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform the C to KS, when in an initial ACC, followed by ' +
         'either E, I, or H (but not HU)', function () {
-            var metaphone = doubleMetaphone('accident')[0];
+            var metaphone;
+
+            metaphone = doubleMetaphone('accident')[0];
+
             assert(metaphone.charAt(1) === 'K');
             assert(metaphone.charAt(2) === 'S');
 
             metaphone = doubleMetaphone('accede')[0];
+
             assert(metaphone.charAt(1) === 'K');
             assert(metaphone.charAt(2) === 'S');
         }
     );
 
     it('should transform the C to KS, when in UCCEE or UCCES', function () {
-        var metaphone = doubleMetaphone('succeed')[0];
+        var metaphone;
+
+        metaphone = doubleMetaphone('succeed')[0];
+
         assert(metaphone.charAt(1) === 'K');
         assert(metaphone.charAt(2) === 'S');
     });
@@ -257,11 +279,15 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform the C to S and X, when followed by I and either ' +
         'E, or O', function () {
-            var metaphone = doubleMetaphone('ancient');
+            var metaphone;
+
+            metaphone = doubleMetaphone('ancient');
+
             assert(metaphone[0].charAt(2) === 'S');
             assert(metaphone[1].charAt(2) === 'X');
 
             metaphone = doubleMetaphone('delicious');
+
             assert(metaphone[0].charAt(2) === 'S');
             assert(metaphone[1].charAt(2) === 'X');
         }
@@ -383,7 +409,10 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform GN to KN and N, when preceded by a vowel and ^, ' +
         'and not Slavo-Germanic', function () {
-            var metaphone = doubleMetaphone('agnize');
+            var metaphone;
+
+            metaphone = doubleMetaphone('agnize');
+
             assert(metaphone[0].slice(0, 3) === 'AKN');
             assert(metaphone[1].slice(0, 2) === 'AN');
         }
@@ -391,7 +420,10 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform GN to N and KN, when not followed by EY and Y, ' +
         'and not Slavo-Germanic', function () {
-            var metaphone = doubleMetaphone('acceptingness');
+            var metaphone;
+
+            metaphone = doubleMetaphone('acceptingness');
+
             assert(metaphone[0].slice(-3) === 'NNS');
             assert(metaphone[1].slice(-4) === 'NKNS');
         }
@@ -402,14 +434,20 @@ describe('doubleMetaphone(value)', function () {
     });
 
     it('should transform GLI to KL and L', function () {
-        var metaphone = doubleMetaphone('tagliaro');
+        var metaphone;
+
+        metaphone = doubleMetaphone('tagliaro');
+
         assert(metaphone[0] === 'TKLR');
         assert(metaphone[1] === 'TLR');
     });
 
     it('should transform an initial GY., GES, GEP, GEB, GEL, GEY, GIB, ' +
         'GIL, GIN, GIE, GEI, and GER to K and J', function () {
-            var metaphone = doubleMetaphone('Gerben');
+            var metaphone;
+
+            metaphone = doubleMetaphone('Gerben');
+
             assert(metaphone[0].charAt(0) === 'K');
             assert(metaphone[1].charAt(0) === 'J');
         }
@@ -417,7 +455,10 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform GER to K and J, when not in DANGER, RANGER, and ' +
         'MANGER, and not preceded by E and I', function () {
-            var metaphone = doubleMetaphone('auger');
+            var metaphone;
+
+            metaphone = doubleMetaphone('auger');
+
             assert(metaphone[0].charAt(1) === 'K');
             assert(metaphone[1].charAt(1) === 'J');
         }
@@ -425,20 +466,29 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform GY to K and J, when not preceded by E, I, R, ' +
         'and O', function () {
-            var metaphone = doubleMetaphone('bulgy');
+            var metaphone;
+
+            metaphone = doubleMetaphone('bulgy');
+
             assert(metaphone[0].charAt(2) === 'K');
             assert(metaphone[1].charAt(2) === 'J');
         }
     );
 
     it('should transform the G in GET to K', function () {
-        var metaphone = doubleMetaphone('altogether');
+        var metaphone;
+
+        metaphone = doubleMetaphone('altogether');
+
         assert(metaphone[0].charAt(3) === 'K');
     });
 
     it('should transform G to K, when Germanic and followed by E, I, or Y',
         function () {
-            var metaphone = doubleMetaphone('Van Agema');
+            var metaphone;
+
+            metaphone = doubleMetaphone('Van Agema');
+
             assert(metaphone[0].charAt(2) === 'K');
         }
     );
@@ -446,20 +496,29 @@ describe('doubleMetaphone(value)', function () {
     it('should transform G to K, when Germanic, preceded by A or O, and ' +
         'followed by GI',
         function () {
-            var metaphone = doubleMetaphone('Von Goggin');
+            var metaphone;
+
+            metaphone = doubleMetaphone('Von Goggin');
+
             assert(metaphone[0].charAt(3) === 'K');
         }
     );
 
     it('should transform G to J, when followed by "IER "', function () {
-        var metaphone = doubleMetaphone('tangier');
+        var metaphone;
+
+        metaphone = doubleMetaphone('tangier');
+
         assert(metaphone[0].charAt(2) === 'J');
     });
 
     it('should transform G to J and K, when followed by E, I, or Y, or ' +
         'preceded by A or O and followed by GI',
         function () {
-            var metaphone = doubleMetaphone('biaggi');
+            var metaphone;
+
+            metaphone = doubleMetaphone('biaggi');
+
             assert(metaphone[0].charAt(1) === 'J');
             assert(metaphone[1].charAt(1) === 'K');
         }
@@ -498,27 +557,39 @@ describe('doubleMetaphone(value)', function () {
     });
 
     it('should transform the J to J and H, when in JOSE', function () {
-        var metaphone = doubleMetaphone('Joseph');
+        var metaphone;
+
+        metaphone = doubleMetaphone('Joseph');
+
         assert(metaphone[0].charAt(0) === 'J');
         assert(metaphone[1].charAt(0) === 'H');
     });
 
     it('should transform an initial J to J and A', function () {
-        var metaphone = doubleMetaphone('Jankelowicz');
+        var metaphone;
+
+        metaphone = doubleMetaphone('Jankelowicz');
+
         assert(metaphone[0].charAt(0) === 'J');
         assert(metaphone[1].charAt(0) === 'A');
     });
 
     it('should transform J to J and H, when preceded by a vowel, followed ' +
         'by A or O, and not Slavo-Germanic', function () {
-            var metaphone = doubleMetaphone('bajador');
+            var metaphone;
+
+            metaphone = doubleMetaphone('bajador');
+
             assert(metaphone[0].charAt(1) === 'J');
             assert(metaphone[1].charAt(1) === 'H');
         }
     );
 
     it('should both keep and drop a final J', function () {
-        var metaphone = doubleMetaphone('svaraj');
+        var metaphone;
+
+        metaphone = doubleMetaphone('svaraj');
+
         assert(metaphone[0] === 'SFRJ');
         assert(metaphone[1] === 'SFR');
     });
@@ -547,15 +618,20 @@ describe('doubleMetaphone(value)', function () {
 
     it('should both transform LL to L, and drop it, when in a final ILLO, ' +
         'ILLA and ALLE', function () {
-            var metaphone = doubleMetaphone('cabrillo');
+            var metaphone;
+
+            metaphone = doubleMetaphone('cabrillo');
+
             assert(metaphone[0] === 'KPRL');
             assert(metaphone[1] === 'KPR');
 
             metaphone = doubleMetaphone('villa');
+
             assert(metaphone[0] === 'FL');
             assert(metaphone[1] === 'F');
 
             metaphone = doubleMetaphone('crevalle');
+
             assert(metaphone[0] === 'KRFL');
             assert(metaphone[1] === 'KRF');
         }
@@ -563,11 +639,15 @@ describe('doubleMetaphone(value)', function () {
 
     it('should both transform the LL to L, and drop it, in ALLE, when the ' +
         'given value ends in A, O, AS, or OS', function () {
-            var metaphone = doubleMetaphone('allegretto');
+            var metaphone;
+
+            metaphone = doubleMetaphone('allegretto');
+
             assert(metaphone[0] === 'ALKRT');
             assert(metaphone[1] === 'AKRT');
 
             metaphone = doubleMetaphone('allegros');
+
             assert(metaphone[0] === 'ALKRS');
             assert(metaphone[1] === 'AKRS');
         }
@@ -635,7 +715,10 @@ describe('doubleMetaphone(value)', function () {
 
     it('should both drop and keep a final R when preceded by IE, in ' +
         'turn not preceded by ME and MA', function () {
-            var metaphone = doubleMetaphone('Xavier');
+            var metaphone;
+
+            metaphone = doubleMetaphone('Xavier');
+
             assert(metaphone[0] === 'SF');
             assert(metaphone[1] === 'SFR');
         }
@@ -662,7 +745,10 @@ describe('doubleMetaphone(value)', function () {
     );
 
     it('should transform the S to X and S in an initial SUGAR', function () {
-        var metaphone = doubleMetaphone('sugar');
+        var metaphone;
+
+        metaphone = doubleMetaphone('sugar');
+
         assert(metaphone[0].charAt(0) === 'X');
         assert(metaphone[1].charAt(0) === 'S');
     });
@@ -679,7 +765,10 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform SIO and SIA to S and X, when not Slavo-Germanic',
         function () {
-            var metaphone = doubleMetaphone('sio');
+            var metaphone;
+
+            metaphone = doubleMetaphone('sio');
+
             assert(metaphone[0].charAt(0) === 'S');
             assert(metaphone[1].charAt(0) === 'X');
         }
@@ -687,21 +776,30 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform SIO and SIA to S, when Slavo-Germanic',
         function () {
-            var metaphone = doubleMetaphone('sioricz');
+            var metaphone;
+
+            metaphone = doubleMetaphone('sioricz');
+
             assert(metaphone[0].charAt(0) === 'S');
             assert(metaphone[1].charAt(0) === 'S');
         }
     );
 
     it('should transform SZ to X and S', function () {
-        var metaphone = doubleMetaphone('sz');
+        var metaphone;
+
+        metaphone = doubleMetaphone('sz');
+
         assert(metaphone[0] === 'S');
         assert(metaphone[1] === 'X');
     });
 
     it('should transform S to X and S when followed by L, M, N, or W',
         function () {
-            var metaphone = doubleMetaphone('sl');
+            var metaphone;
+
+            metaphone = doubleMetaphone('sl');
+
             assert(metaphone[0] === 'SL');
             assert(metaphone[1] === 'XL');
         }
@@ -709,7 +807,10 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform SCH to X and SK when followed by ER or EN',
         function () {
-            var metaphone = doubleMetaphone('schenker');
+            var metaphone;
+
+            metaphone = doubleMetaphone('schenker');
+
             assert(metaphone[0] === 'XNKR');
             assert(metaphone[1] === 'SKNKR');
         }
@@ -717,7 +818,10 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform SCH to SK when followed by OO, UY, ED, or EM',
         function () {
-            var metaphone = doubleMetaphone('schooner');
+            var metaphone;
+
+            metaphone = doubleMetaphone('schooner');
+
             assert(metaphone[0] === 'SKNR');
             assert(metaphone[1] === 'SKNR');
         }
@@ -725,7 +829,10 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform SCH to X and S, when initial, and not followed ' +
         'by a non-vowel and W', function () {
-            var metaphone = doubleMetaphone('schlepp');
+            var metaphone;
+
+            metaphone = doubleMetaphone('schlepp');
+
             assert(metaphone[0] === 'XLP');
             assert(metaphone[1] === 'SLP');
         }
@@ -745,7 +852,10 @@ describe('doubleMetaphone(value)', function () {
 
     it('should drop and keep S, when final and preceded by AI or OI',
         function () {
-            var metaphone = doubleMetaphone('ois');
+            var metaphone;
+
+            metaphone = doubleMetaphone('ois');
+
             assert(metaphone[0] === 'A');
             assert(metaphone[1] === 'AS');
         }
@@ -784,7 +894,10 @@ describe('doubleMetaphone(value)', function () {
     );
 
     it('should transform TH to 0 and T', function () {
-        var metaphone = doubleMetaphone('th');
+        var metaphone;
+
+        metaphone = doubleMetaphone('th');
+
         assert(metaphone[0] === '0');
         assert(metaphone[1] === 'T');
     });
@@ -815,7 +928,10 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform W to A and F, when initial and followed by a vowel',
         function () {
-            var metaphone = doubleMetaphone('wa');
+            var metaphone;
+
+            metaphone = doubleMetaphone('wa');
+
             assert(metaphone[0] === 'A');
             assert(metaphone[1] === 'F');
         }
@@ -829,11 +945,15 @@ describe('doubleMetaphone(value)', function () {
 
     it('should both drop and transform W to F, when in EWSKI, EWSKY, ' +
         'OWSKI, or OWSKY', function () {
-            var metaphone = doubleMetaphone('Tsjaikowski');
+            var metaphone;
+
+            metaphone = doubleMetaphone('Tsjaikowski');
+
             assert(metaphone[0] === 'TSKSK');
             assert(metaphone[1] === 'TSKFSK');
 
             metaphone = doubleMetaphone('Tsjaikowsky');
+
             assert(metaphone[0] === 'TSKSK');
             assert(metaphone[1] === 'TSKFSK');
         }
@@ -841,7 +961,9 @@ describe('doubleMetaphone(value)', function () {
 
     it('should both drop and transform W to F, when the value starts ' +
         'with SCH', function () {
-            var metaphone = doubleMetaphone('schwa');
+            var metaphone;
+
+            metaphone = doubleMetaphone('schwa');
 
             assert(metaphone[0] === 'X');
             assert(metaphone[1] === 'XF');
@@ -850,7 +972,10 @@ describe('doubleMetaphone(value)', function () {
 
     it('should both drop and transform W to F, when final and preceded by ' +
         'a vowel', function () {
-            var metaphone = doubleMetaphone('Arnow');
+            var metaphone;
+
+            metaphone = doubleMetaphone('Arnow');
+
             assert(metaphone[0] === 'ARN');
             assert(metaphone[1] === 'ARNF');
         }
@@ -858,11 +983,15 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform W to TS and FX, when followed by ICZ or ITZ',
         function () {
-            var metaphone = doubleMetaphone('Filipowicz');
+            var metaphone;
+
+            metaphone = doubleMetaphone('Filipowicz');
+
             assert(metaphone[0] === 'FLPTS');
             assert(metaphone[1] === 'FLPFX');
 
             metaphone = doubleMetaphone('Filipowitz');
+
             assert(metaphone[0] === 'FLPTS');
             assert(metaphone[1] === 'FLPFX');
         }
@@ -903,15 +1032,20 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform Z to S and TS, when followed by ZA, ZI, or ZO',
         function () {
-            var metaphone = doubleMetaphone('zza');
+            var metaphone;
+
+            metaphone = doubleMetaphone('zza');
+
             assert(metaphone[0] === 'S');
             assert(metaphone[1] === 'TS');
 
             metaphone = doubleMetaphone('zzi');
+
             assert(metaphone[0] === 'S');
             assert(metaphone[1] === 'TS');
 
             metaphone = doubleMetaphone('zzo');
+
             assert(metaphone[0] === 'S');
             assert(metaphone[1] === 'TS');
         }
@@ -919,7 +1053,10 @@ describe('doubleMetaphone(value)', function () {
 
     it('should transform Z to S and TS, when not initial, not ' +
         'Slavo-Germanic, and not preceded by T', function () {
-            var metaphone = doubleMetaphone('Mazurkiewicz');
+            var metaphone;
+
+            metaphone = doubleMetaphone('Mazurkiewicz');
+
             assert(metaphone[0] === 'MSRKTS');
             assert(metaphone[1] === 'MTSRKFX');
         }
