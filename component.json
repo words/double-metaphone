@@ -7,7 +7,9 @@
     "lawrence",
     "philips",
     "double",
-    "metaphone"
+    "metaphone",
+    "cli",
+    "bin"
   ],
   "repository": "wooorm/double-metaphone",
   "scripts" : [

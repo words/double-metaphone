@@ -7,13 +7,18 @@
     "lawrence",
     "philips",
     "double",
-    "metaphone"
+    "metaphone",
+    "cli",
+    "bin"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/wooorm/double-metaphone.git"
   },
   "author": "Titus Wormer <tituswormer@gmail.com>",
+  "bin": {
+    "double-metaphone": "cli.js"
+  },
   "devDependencies": {
     "eslint": "^0.9.0",
     "istanbul": "^0.3.0",
@@ -26,10 +31,11 @@
     "test-travis": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks -u exports test.js",
     "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- test.js",
     "lint-api": "node_modules/.bin/eslint index.js",
+    "lint-cli": "node_modules/.bin/eslint cli.js",
     "lint-test": "node_modules/.bin/eslint test.js --env mocha",
     "lint-benchmark": "node_modules/.bin/eslint benchmark.js --env node --global suite,set,bench",
-    "lint-style": "node_modules/.bin/jscs index.js test.js benchmark.js --reporter=inline",
-    "lint": "npm run lint-api && npm run lint-test && npm run lint-benchmark && npm run lint-style",
+    "lint-style": "node_modules/.bin/jscs index.js cli.js test.js benchmark.js --reporter=inline",
+    "lint": "npm run lint-api && npm run lint-cli && npm run lint-test && npm run lint-benchmark && npm run lint-style",
     "make": "npm run lint && npm run coverage",
     "install-benchmark": "npm install natural doublemetaphone",
     "benchmark": "node_modules/.bin/matcha benchmark.js"

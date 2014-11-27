@@ -42,7 +42,39 @@ doubleMetaphone(stemmer("acceptingness")); // [ 'AKSPTNK', 'AKSPTNK' ]
 doubleMetaphone(stemmer("allegrettos")); // [ 'ALKRT', 'AKRT' ]
 ```
 
+## CLI
+
+Install:
+```sh
+$ npm install --global double-metaphone
+```
+
+
+Use:
+```
+Usage: double-metaphone [options] string
+
+Options:
+
+  -h, --help           output usage information
+  -v, --version        output version number
+
+Usage:
+
+  Note! The two results are tab seperated!
+
+# output phonetics of given value
+$ double-metaphone michael
+# MKL	MXL
+
+# output phonetics of stdin
+$ echo "Xavier" | double-metaphone
+# SF	SFR
+```
+
+
 ## Benchmark
+
 On a MacBook Air, it runs about 390,000 op/s.
 
 ```
