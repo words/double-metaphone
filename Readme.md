@@ -1,4 +1,4 @@
-# double-metaphone [![Build Status](https://travis-ci.org/wooorm/double-metaphone.svg?branch=master)](https://travis-ci.org/wooorm/double-metaphone) [![Coverage Status](https://img.shields.io/coveralls/wooorm/double-metaphone.svg)](https://coveralls.io/r/wooorm/double-metaphone?branch=master)
+# double-metaphone [![Build Status](https://img.shields.io/travis/wooorm/double-metaphone.svg?style=flat)](https://travis-ci.org/wooorm/double-metaphone) [![Coverage Status](https://img.shields.io/coveralls/wooorm/double-metaphone.svg?style=flat)](https://coveralls.io/r/wooorm/double-metaphone?branch=master)
 
 The [double metaphone](http://en.wikipedia.org/wiki/metaphone) algorithm in JavaScript, with some fixes and unreachable code removed. The code is 100% covered by more than 230 assertions(!).
 
