@@ -43,27 +43,16 @@ doubleMetaphone(stemmer("allegrettos")); // [ 'ALKRT', 'AKRT' ]
 ```
 
 ## Benchmark
-
-Run the benchmark yourself:
-
-```sh
-$ npm run benchmark
-```
-
-On a MacBook Air, it runs about 455,000 op/s.
+On a MacBook Air, it runs about 390,000 op/s.
 
 ```
-           double-metaphone — this module
-  455 op/s » op/s * 1,000
+  390 op/s » op/s * 1,000
 
            doublemetaphone
-  424 op/s » op/s * 1,000
+  295 op/s » op/s * 1,000
 
            natural
-  171 op/s » op/s * 1,000
-
-           clj-fuzzy
-   12 op/s » op/s * 1,000
+  140 op/s » op/s * 1,000
 ```
 
 ## License
