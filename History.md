@@ -1,4 +1,19 @@
 
+n.n.n / 2014-11-27
+==================
+
+ * Add CLI
+ * Add shorter description to `package.json`, `component.json`, `bower.json`
+ * Refactor npm script targets in `package.json`
+ * Add link to personal website to copyright in `Readme.md`
+ * Update benchmark in `Readme.md`
+ * Update useage example in `Readme.md`
+ * Remove other implementations from `Readme.md`
+ * Add shorter description to `Readme.md`
+ * Add flat badges to `Readme.md`
+ * Fix incorrect executive rights on `test.js`
+ * Update jscs, matcha
+
 0.1.2 / 2014-10-26
 ==================
 
