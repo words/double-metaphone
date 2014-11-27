@@ -42,12 +42,6 @@ doubleMetaphone(stemmer("acceptingness")); // [ 'AKSPTNK', 'AKSPTNK' ]
 doubleMetaphone(stemmer("allegrettos")); // [ 'ALKRT', 'AKRT' ]
 ```
 
-## Other Double Metaphone implementations
-
-- [NaturalNode/natural](https://github.com/NaturalNode/natural) — Bit [buggy](https://github.com/NaturalNode/natural/issues/173);
-- [hgoebl/doublemetaphone](https://github.com/hgoebl/doublemetaphone) — Constructors, more options;
-- [Yomguithereal/clj-fuzzy](https://github.com/Yomguithereal/clj-fuzzy) — Clojure, bit slow.
-
 ## Benchmark
 
 Run the benchmark yourself:
