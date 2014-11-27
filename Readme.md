@@ -1,12 +1,6 @@
 # double-metaphone [![Build Status](https://img.shields.io/travis/wooorm/double-metaphone.svg?style=flat)](https://travis-ci.org/wooorm/double-metaphone) [![Coverage Status](https://img.shields.io/coveralls/wooorm/double-metaphone.svg?style=flat)](https://coveralls.io/r/wooorm/double-metaphone?branch=master)
 
-The [double metaphone](http://en.wikipedia.org/wiki/metaphone) algorithm in JavaScript, with some fixes and unreachable code removed. The code is 100% covered by more than 230 assertions(!).
-
-The major difference from the [original metaphone](https://github.com/wooorm/metaphone) algorithm is that the double metaphone is not limited to English only, thus also working on words from Germanic, Slavic, Spanish, Celtic, Greek, French, Italian, Chinese, or other origin.
-
-Another difference is that the double metaphone algorithm returns two (hence “double”) possible phonetics: "Smith" yields "SM0" and "XMT", and "Schmidt" yields "XMT" and "SMT", thus making it possible to detect that they could be pronounced the same.
-
-For even better results, combine it with a stemmer (e.g., my own porter stemmer [implementation](https://github.com/wooorm/stemmer)).
+[Double metaphone](http://en.wikipedia.org/wiki/metaphone) algorithm in JavaScript. Includes few fixes and dead-code removal. 100% coverage (which hasn’t been done before). No cruft. Real fast.
 
 ## Installation
 
