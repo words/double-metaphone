@@ -35,8 +35,8 @@ doubleMetaphone("allegrettos"); // ['ALKRTS', 'AKRTS']
 
 With [stemmer](https://github.com/wooorm/stemmer):
 ```js
-var doubleMetaphone = require('double-metaphone'),
-    stemmer = require('stemmer');
+var doubleMetaphone = require('double-metaphone');
+var stemmer = require('stemmer');
 
 doubleMetaphone(stemmer("acceptingness")); // [ 'AKSPTNK', 'AKSPTNK' ]
 doubleMetaphone(stemmer("allegrettos")); // [ 'ALKRT', 'AKRT' ]
