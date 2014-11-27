@@ -1,7 +1,7 @@
 {
   "name": "double-metaphone",
   "version": "0.1.2",
-  "description": "An implementation of the Double Metaphone algorithm by Lawrence Philips",
+  "description": "Double Metaphone algorithm",
   "license": "MIT",
   "keywords": [
     "lawrence",

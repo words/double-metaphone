@@ -1,7 +1,7 @@
 {
   "name": "double-metaphone",
   "main": "index.js",
-  "description": "An implementation of the Double Metaphone algorithm by Lawrence Philips",
+  "description": "Double Metaphone algorithm",
   "license": "MIT",
   "keywords": [
     "lawrence",
