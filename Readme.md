@@ -64,7 +64,9 @@ $ npm install --global double-metaphone
 Use:
 
 ```text
-Usage: double-metaphone [options] string
+Usage: double-metaphone [options] <word>
+
+Double Metaphone algorithm
 
 Options:
 
@@ -73,13 +75,11 @@ Options:
 
 Usage:
 
-  Note! The two results are tab seperated!
-
-# output phonetics of given value
+# output phonetics (the values are tab seperated)
 $ double-metaphone michael
 # MKL	MXL
 
-# output phonetics of stdin
+# output phonetics from stdin
 $ echo "Xavier" | double-metaphone
 # SF	SFR
 ```
