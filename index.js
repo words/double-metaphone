@@ -16,98 +16,98 @@ var VOWELS,
     H_FOR_S,
     DUTCH_SCH;
 
-/**
+/*
  * Match vowels (including `Y`).
  */
 
 VOWELS = /[AEIOUY]/;
 
-/**
+/*
  * Match few Slavo-Germanic values.
  */
 
 SLAVO_GERMANIC = /W|K|CZ|WITZ/;
 
-/**
+/*
  * Match few Germanic values.
  */
 
 GERMANIC = /^(VAN |VON |SCH)/;
 
-/**
+/*
  * Match initial values of which the first character
  * should be skipped.
  */
 
 INITIAL_EXCEPTIONS = /^(GN|KN|PN|WR|PS)/;
 
-/**
+/*
  * Match initial Greek-like values of which the `CH`
  * sounds like `K`.
  */
 
 GREEK_INITIAL_CH = /^CH(IA|EM|OR([^E])|YM|ARAC|ARIS)/;
 
-/**
+/*
  * Match Greek-like values of which the `CH` sounds
  * like `K`.
  */
 
 GREEK_CH = /ORCHES|ARCHIT|ORCHID/;
 
-/**
+/*
  * Match values which when following `CH`, transform `CH`
  * to sound like `K`.
  */
 
 CH_FOR_KH = /[ BFHLMNRVW]/;
 
-/**
+/*
  * Match values which when preceding a vowel and `UGH`,
  * sound like `F`.
  */
 
 G_FOR_F = /[CGLRT]/;
 
-/**
+/*
  * Match initial values which sound like either `K` or `J`.
  */
 
 INITIAL_G_FOR_KJ = /Y[\s\S]|E[BILPRSY]|I[BELN]/;
 
-/**
+/*
  * Match initial values which sound like either `K` or `J`.
  */
 
 INITIAL_ANGER_EXCEPTION = /^[DMR]ANGER/;
 
-/**
+/*
  * Match values which when following `GY`, do not sound
  * like `K` or `J`.
  */
 
 G_FOR_KJ = /[EGIR]/;
 
-/**
+/*
  * Match values which when following `J`, do not sound `J`.
  */
 
 J_FOR_J_EXCEPTION = /[LTKSNMBZ]/;
 
-/**
+/*
  * Match values which might sound like `L`.
  */
 
 ALLE = /AS|OS/;
 
-/**
+/*
  * Match Germanic values preceding `SH` which sound
  * like `S`.
  */
 
 H_FOR_S = /EIM|OEK|OLM|OLZ/;
 
-/**
+/*
  * Match Dutch values following `SCH` which sound like
  * either `X` and `SK`, or `SK`.
  */
@@ -119,9 +119,8 @@ DUTCH_SCH = /E[DMNR]|UY|OO/;
  * algorithm from a value.
  *
  * @param {string} value - value to detect phonetics for.
- * @return {string} phonetics.
+ * @return {Array.<string>} - Two phonetics.
  */
-
 function doubleMetaphone(value) {
     var primary = '',
         secondary = '',
@@ -136,7 +135,7 @@ function doubleMetaphone(value) {
     isGermanic = GERMANIC.test(value);
     characters = value.split('');
 
-    /**
+    /*
      * skip this at beginning of word.
      */
 
@@ -144,7 +143,7 @@ function doubleMetaphone(value) {
         index++;
     }
 
-    /**
+    /*
      * Initial X is pronounced Z, which maps to S. Such as `Xavier`
      */
 
@@ -172,7 +171,7 @@ function doubleMetaphone(value) {
             case 'É':
             case 'É':
                 if (index === 0) {
-                    /**
+                    /*
                      * All initial vowels now map to `A`.
                      */
 
@@ -201,7 +200,7 @@ function doubleMetaphone(value) {
 
                 break;
             case 'C':
-                /**
+                /*
                  * Various Germanic:
                  */
 
@@ -221,7 +220,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * Special case for `Caesar`.
                  */
 
@@ -236,7 +235,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * Italian `Chianti`.
                  */
 
@@ -249,7 +248,7 @@ function doubleMetaphone(value) {
                 }
 
                 if (next === 'H') {
-                    /**
+                    /*
                      * Find `Michael`.
                      */
 
@@ -264,7 +263,7 @@ function doubleMetaphone(value) {
                         break;
                     }
 
-                    /**
+                    /*
                      * Greek roots such as `chemistry`, `chorus`.
                      */
 
@@ -276,13 +275,13 @@ function doubleMetaphone(value) {
                         break;
                     }
 
-                    /**
+                    /*
                      * Germanic, Greek, or otherwise `CH` for `KH` sound.
                      */
 
                     if (
                         isGermanic ||
-                        /**
+                        /*
                          * Such as 'architect' but not 'arch', orchestra',
                          * 'orchid'.
                          */
@@ -294,7 +293,7 @@ function doubleMetaphone(value) {
                                 prev === 'A' || prev === 'E' ||
                                 prev === 'O' || prev === 'U'
                             ) &&
-                            /**
+                            /*
                              * Such as `wachtler`, `weschsler`, but not
                              * `tichner`.
                              */
@@ -306,11 +305,11 @@ function doubleMetaphone(value) {
                     } else if (index === 0) {
                         primary += 'X';
                         secondary += 'X';
-                    /**
+                    /*
                      * Such as 'McHugh'.
                      */
                     } else if (value.slice(0, 2) === 'MC') {
-                        /**
+                        /*
                          * Bug? Why matching absolute? what about McHiccup?
                          */
 
@@ -326,7 +325,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * Such as `Czerny`.
                  */
 
@@ -341,7 +340,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * Such as `Focaccia`.
                  */
 
@@ -353,7 +352,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * Double `C`, but not `McClellan`.
                  */
 
@@ -361,7 +360,7 @@ function doubleMetaphone(value) {
                     next === 'C' &&
                     !(index === 1 && characters[0] === 'M')
                 ) {
-                    /**
+                    /*
                      * Such as `Bellocchio`, but not `Bacchus`.
                      */
 
@@ -375,7 +374,7 @@ function doubleMetaphone(value) {
                     ) {
                         subvalue = value.slice(index - 1, index + 4);
 
-                        /**
+                        /*
                          * Such as `Accident`, `Accede`, `Succeed`.
                          */
 
@@ -386,7 +385,7 @@ function doubleMetaphone(value) {
                             primary += 'KS';
                             secondary += 'KS';
 
-                        /**
+                        /*
                          * Such as `Bacci`, `Bertucci`, other Italian.
                          */
                         } else {
@@ -398,7 +397,7 @@ function doubleMetaphone(value) {
 
                         break;
                     } else {
-                        /**
+                        /*
                          * Pierce's rule.
                          */
 
@@ -418,13 +417,13 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * Italian.
                  */
 
                 if (
                     next === 'I' &&
-                    /**
+                    /*
                      * Bug: The original algorithm also calls for A (as
                      * in CIA), which is already taken care of above.
                      */
@@ -448,7 +447,7 @@ function doubleMetaphone(value) {
                 primary += 'K';
                 secondary += 'K';
 
-                /**
+                /*
                  * Skip two extra characters ahead in `Mac Caffrey`,
                  * `Mac Gregor`.
                  */
@@ -465,7 +464,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * Bug: Already covered above.
                  *
                  * if (
@@ -486,7 +485,7 @@ function doubleMetaphone(value) {
                 break;
             case 'D':
                 if (next === 'G') {
-                    /**
+                    /*
                      * Such as `edge`.
                      */
 
@@ -498,7 +497,7 @@ function doubleMetaphone(value) {
                         primary += 'J';
                         secondary += 'J';
                         index += 3;
-                    /**
+                    /*
                      * Such as `Edgar`.
                      */
                     } else {
@@ -543,7 +542,7 @@ function doubleMetaphone(value) {
                         break;
                     }
 
-                    /**
+                    /*
                      * Such as `Ghislane`, `Ghiradelli`.
                      */
 
@@ -559,13 +558,13 @@ function doubleMetaphone(value) {
                         break;
                     }
 
-                    /**
+                    /*
                      * Parker's rule (with some further refinements).
                      */
 
                     if (
                         (
-                            /**
+                            /*
                              * Such as `Hugh`
                              *
                              * The comma is not a bug.
@@ -577,7 +576,7 @@ function doubleMetaphone(value) {
                             subvalue === 'D'
                         ) ||
                         (
-                            /**
+                            /*
                              * Such as `bough`.
                              *
                              * The comma is not a bug.
@@ -589,7 +588,7 @@ function doubleMetaphone(value) {
                             subvalue === 'D'
                         ) ||
                         (
-                            /**
+                            /*
                              * Such as `Broughton`.
                              *
                              * The comma is not a bug.
@@ -605,7 +604,7 @@ function doubleMetaphone(value) {
                         break;
                     }
 
-                    /**
+                    /*
                      * Such as `laugh`, `McLaughlin`, `cough`, `gough`,
                      * `rough`, `tough`.
                      */
@@ -634,7 +633,7 @@ function doubleMetaphone(value) {
                     ) {
                         primary += 'KN';
                         secondary += 'N';
-                    /**
+                    /*
                      * Not like `Cagney`.
                      */
                     } else if (
@@ -654,7 +653,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * Such as `Tagliaro`.
                  */
 
@@ -669,7 +668,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * -ges-, -gep-, -gel- at beginning.
                  */
 
@@ -684,7 +683,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * -ger-, -gy-.
                  */
 
@@ -703,7 +702,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * Italian such as `biaggi`.
                  */
 
@@ -714,7 +713,7 @@ function doubleMetaphone(value) {
                         next === 'G' && nextnext === 'I'
                     )
                 ) {
-                    /**
+                    /*
                      * Obvious Germanic.
                      */
 
@@ -725,7 +724,7 @@ function doubleMetaphone(value) {
                         primary += 'K';
                         secondary += 'K';
                     } else {
-                        /**
+                        /*
                          * Always soft if French ending.
                          */
 
@@ -754,7 +753,7 @@ function doubleMetaphone(value) {
 
                 break;
             case 'H':
-                /**
+                /*
                  * Only keep if first & before vowel or btw. 2 vowels.
                  */
 
@@ -769,7 +768,7 @@ function doubleMetaphone(value) {
 
                 break;
             case 'J':
-                /**
+                /*
                  * Obvious Spanish, `jose`, `San Jacinto`.
                  */
                 if (
@@ -797,19 +796,19 @@ function doubleMetaphone(value) {
 
                 if (
                     index === 0
-                    /**
+                    /*
                      * Bug: unreachable (see previous statement).
                      * && value.slice(index, index + 4) !== 'JOSE'.
                      */
                 ) {
                     primary += 'J';
 
-                    /**
+                    /*
                      * Such as `Yankelovich` or `Jankelowicz`.
                      */
 
                     secondary += 'A';
-                /**
+                /*
                  * Spanish pron. of such as `bajador`.
                  */
                 } else if (
@@ -827,7 +826,7 @@ function doubleMetaphone(value) {
                 ) {
                     primary += 'J';
                     secondary += 'J';
-                /**
+                /*
                  * It could happen.
                  */
                 } else if (next === 'J') {
@@ -849,7 +848,7 @@ function doubleMetaphone(value) {
                 break;
             case 'L':
                 if (next === 'L') {
-                    /**
+                    /*
                      * Spanish such as `cabrillo`, `gallegos`.
                      */
 
@@ -895,7 +894,7 @@ function doubleMetaphone(value) {
                 if (
                     next === 'M' ||
 
-                    /**
+                    /*
                      * Such as `dumb`, `thumb`.
                      */
 
@@ -940,7 +939,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * Also account for `campbell` and `raspberry`.
                  */
 
@@ -967,7 +966,7 @@ function doubleMetaphone(value) {
 
                 break;
             case 'R':
-                /**
+                /*
                  * French such as `Rogier`, but exclude `Hochmeier`.
                  */
 
@@ -996,7 +995,7 @@ function doubleMetaphone(value) {
 
                 break;
             case 'S':
-                /**
+                /*
                  * Special cases `island`, `isle`, `carlisle`, `carlysle`.
                  */
 
@@ -1006,7 +1005,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * Special case `sugar-`.
                  */
 
@@ -1019,7 +1018,7 @@ function doubleMetaphone(value) {
                 }
 
                 if (next === 'H') {
-                    /**
+                    /*
                      * Germanic.
                      */
 
@@ -1037,7 +1036,7 @@ function doubleMetaphone(value) {
 
                 if (
                     next === 'I' && (nextnext === 'O' || nextnext === 'A')
-                    /**
+                    /*
                      * Bug: Already covered by previous branch
                      * || value.slice(index, index + 4) === 'SIAN'
                      */
@@ -1055,7 +1054,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * German & Anglicization's, such as `Smith` match `Schmidt`,
                  * `snider` match `Schneider`. Also, -sz- in slavic language
                  * although in hungarian it is pronounced `s`.
@@ -1083,19 +1082,19 @@ function doubleMetaphone(value) {
                 }
 
                 if (next === 'C') {
-                    /**
+                    /*
                      * Schlesinger's rule.
                      */
 
                     if (nextnext === 'H') {
                         subvalue = value.slice(index + 3, index + 5);
 
-                        /**
+                        /*
                          * Dutch origin, such as `school`, `schooner`.
                          */
 
                         if (DUTCH_SCH.test(subvalue)) {
-                            /**
+                            /*
                              * Such as `schermerhorn`, `schenker`.
                              */
 
@@ -1149,7 +1148,7 @@ function doubleMetaphone(value) {
 
                 subvalue = value.slice(index - 2, index);
 
-                /**
+                /*
                  * French such as `resnais`, `artois`.
                  */
 
@@ -1168,7 +1167,7 @@ function doubleMetaphone(value) {
 
                 if (
                     next === 'S'
-                    /**
+                    /*
                      * Bug: already taken care of by `German &
                      * Anglicization's` above:
                      *
@@ -1213,7 +1212,7 @@ function doubleMetaphone(value) {
                 }
 
                 if (next === 'H' || (next === 'T' && nextnext === 'H')) {
-                    /**
+                    /*
                      * Special case `Thomas`, `Thames` or Germanic.
                      */
 
@@ -1256,7 +1255,7 @@ function doubleMetaphone(value) {
 
                 break;
             case 'W':
-                /**
+                /*
                  * Can also be in middle of word (as already taken care of
                  * for initial).
                  */
@@ -1270,7 +1269,7 @@ function doubleMetaphone(value) {
                 }
 
                 if (index === 0) {
-                    /**
+                    /*
                      * `Wasserman` should match `Vasserman`.
                      */
 
@@ -1278,7 +1277,7 @@ function doubleMetaphone(value) {
                         primary += 'A';
                         secondary += 'F';
                     } else if (next === 'H') {
-                        /**
+                        /*
                          * Need `Uomo` to match `Womo`.
                          */
 
@@ -1287,7 +1286,7 @@ function doubleMetaphone(value) {
                     }
                 }
 
-                /**
+                /*
                  * `Arnow` should match `Arnoff`.
                  */
 
@@ -1300,7 +1299,7 @@ function doubleMetaphone(value) {
                             characters[index + 3] === 'Y'
                         )
                     ) ||
-                    /**
+                    /*
                      * Maybe a bug? Shouldn't this be general Germanic?
                      */
 
@@ -1313,7 +1312,7 @@ function doubleMetaphone(value) {
                     break;
                 }
 
-                /**
+                /*
                  * Polish such as `Filipowicz`.
                  */
 
@@ -1333,14 +1332,14 @@ function doubleMetaphone(value) {
 
                 break;
             case 'X':
-                /**
+                /*
                  * French such as `breaux`.
                  */
 
                 if (
                     index === last ||
                     (
-                        /**
+                        /*
                          * Bug: IAU and EAU also match by AU
                          * /IAU|EAU/.test(value.slice(index - 3, index)) ||
                          */
@@ -1363,7 +1362,7 @@ function doubleMetaphone(value) {
 
                 break;
             case 'Z':
-                /**
+                /*
                  * Chinese pinyin such as `Zhao`.
                  */
 
@@ -1406,7 +1405,7 @@ function doubleMetaphone(value) {
     return [primary, secondary];
 }
 
-/**
+/*
  * Expose `doubleMetaphone`.
  */
 

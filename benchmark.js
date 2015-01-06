@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/*
  * Dependencies.
  */
 
@@ -8,7 +8,7 @@ var doubleMetaphone;
 
 doubleMetaphone = require('./');
 
-/**
+/*
  * Optional dependencies.
  */
 
@@ -41,7 +41,7 @@ if (exception) {
     );
 }
 
-/**
+/*
  * Fixtures.
  *
  * The first 1000 words from Letterpress:
@@ -1058,12 +1058,11 @@ fixtures = [
  *
  * @param {function(word)} callback
  */
-
 function eachWord(callback) {
     fixtures.forEach(callback);
 }
 
-/**
+/*
  * Benchmark this module.
  */
 
@@ -1073,7 +1072,7 @@ suite('double-metaphone — this module', function () {
     });
 });
 
-/**
+/*
  * Benchmark `doublemetaphone`.
  */
 
@@ -1085,7 +1084,7 @@ if (doublemetaphone) {
     });
 }
 
-/**
+/*
  * Benchmark `natural`.
  */
 

@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/*
  * Dependencies.
  */
 
@@ -10,7 +10,7 @@ var doubleMetaphone,
 doubleMetaphone = require('./');
 assert = require('assert');
 
-/**
+/*
  * Tests.
  */
 
@@ -1071,7 +1071,7 @@ describe('doubleMetaphone(value)', function () {
     });
 });
 
-/**
+/*
  * Tests that this module returns the same results
  * as Natural.
  *
