@@ -12,6 +12,14 @@ pack = require('./package.json');
 doubleMetaphone = require('./');
 
 /*
+ * Detect if a value is expected to be piped in.
+ */
+
+var expextPipeIn;
+
+expextPipeIn = !process.stdin.isTTY;
+
+/*
  * Arguments.
  */
 
@@ -19,13 +27,35 @@ var argv;
 
 argv = process.argv.slice(2);
 
+/*
+ * Command.
+ */
+
+var command;
+
+command = Object.keys(pack.bin)[0];
+
+/**
+ * Get the distance for a word.
+ *
+ * @param {string} value
+ * @return {string}
+ */
+function phonetics(value) {
+    return doubleMetaphone(value).join('\t');
+}
+
 /**
  * Help.
+ *
+ * @return {string}
  */
 function help() {
-    console.log([
+    return [
         '',
-        'Usage: double-metaphone [options] string',
+        'Usage: ' + command + ' [options] <word>',
+        '',
+        pack.description,
         '',
         'Options:',
         '',
@@ -34,16 +64,29 @@ function help() {
         '',
         'Usage:',
         '',
-        '  Note! The two results are tab seperated!',
+        '# output phonetics (the values are tab seperated)',
+        '$ ' + command + ' michael',
+        '# ' + phonetics('michael'),
         '',
-        '# output phonetics of given value',
-        '$ double-metaphone michael',
-        '# MKL	MXL',
-        '',
-        '# output phonetics of stdin',
-        '$ echo "Xavier" | double-metaphone',
-        '# SF	SFR'
-    ].join('\n  ') + '\n');
+        '# output phonetics from stdin',
+        '$ echo "Xavier" | ' + command,
+        '# ' + phonetics('giggling'),
+        ''
+    ].join('\n  ') + '\n';
+}
+
+/**
+ * Get the edit distance for a list containing one word.
+ *
+ * @param {Array.<string>} values
+ */
+function getPhonetics(values) {
+    if (values.length === 1) {
+        console.log(phonetics(values[0]));
+    } else {
+        process.stderr.write(help());
+        process.exit(1);
+    }
 }
 
 /*
@@ -51,23 +94,23 @@ function help() {
  */
 
 if (
-    argv.indexOf('--help') === 0 ||
-    argv.indexOf('-h') === 0
+    argv.indexOf('--help') !== -1 ||
+    argv.indexOf('-h') !== -1
 ) {
-    help();
+    console.log(help());
 } else if (
-    argv.indexOf('--version') === 0 ||
-    argv.indexOf('-v') === 0
+    argv.indexOf('--version') !== -1 ||
+    argv.indexOf('-v') !== -1
 ) {
     console.log(pack.version);
-} else if (argv.length === 1) {
-    console.log(doubleMetaphone(argv[0]).join('\t'));
 } else if (argv.length) {
-    help();
+    getPhonetics(argv.join(' ').split(/\s+/g));
+} else if (!expextPipeIn) {
+    getPhonetics([]);
 } else {
     process.stdin.resume();
     process.stdin.setEncoding('utf8');
     process.stdin.on('data', function (data) {
-        console.log(doubleMetaphone(data.trim()).join('\t'));
+        getPhonetics(data.trim().split(/\s+/g));
     });
 }
