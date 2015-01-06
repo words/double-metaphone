@@ -22,6 +22,13 @@ $ component install wooorm/double-metaphone
 $ bower install double-metaphone
 ```
 
+
+[Duo](http://duojs.org/#getting-started):
+
+```javascript
+var doubleMetaphone = require('wooorm/double-metaphone');
+```
+
 ## Usage
 
 ```javascript
