@@ -70,7 +70,7 @@ function help() {
         '',
         '# output phonetics from stdin',
         '$ echo "Xavier" | ' + command,
-        '# ' + phonetics('giggling'),
+        '# ' + phonetics('Xavier'),
         ''
     ].join('\n  ') + '\n';
 }
