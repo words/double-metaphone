@@ -1,4 +1,21 @@
 
+n.n.n / 2015-01-06
+==================
+
+  * Update CLI use in `Readme.md`
+  * Fix typo in CLIs help message
+  * Add `test.sh`
+  * Refactor cli to detect pipe-in, be more useful
+  * Update copyright notice in `LICENSE` to include 2015
+  * Add Duo as an instalation method in `Readme.md`
+  * Add links to installation methods in `Readme.md`
+  * Add link to whole license in `Readme.md`
+  * Refactor to adhere to strict jsdoc style
+  * Add jscs-jsdoc configuration to `.jscs.json`
+  * Add jscs-jsdoc as a dev-dependency
+  * Refactor npm scripts for changes in npm
+  * Update eslint
+
 0.1.3 / 2014-11-27
 ==================
 
