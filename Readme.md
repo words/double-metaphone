@@ -4,24 +4,27 @@
 
 ## Installation
 
-npm:
-```sh
+[npm](https://docs.npmjs.com/cli/install):
+
+```bash
 $ npm install double-metaphone
 ```
 
-Component:
-```sh
+[Component.js](https://github.com/componentjs/component):
+
+```bash
 $ component install wooorm/double-metaphone
 ```
 
-Bower:
-```sh
+[Bower](http://bower.io/#install-packages):
+
+```bash
 $ bower install double-metaphone
 ```
 
 ## Usage
 
-```js
+```javascript
 var doubleMetaphone = require('double-metaphone');
 
 doubleMetaphone("michael"); // [ 'MKL', 'MXL' ]
@@ -34,7 +37,8 @@ doubleMetaphone("allegrettos"); // ['ALKRTS', 'AKRTS']
 ```
 
 With [stemmer](https://github.com/wooorm/stemmer):
-```js
+
+```javascript
 var doubleMetaphone = require('double-metaphone');
 var stemmer = require('stemmer');
 
@@ -45,13 +49,14 @@ doubleMetaphone(stemmer("allegrettos")); // [ 'ALKRT', 'AKRT' ]
 ## CLI
 
 Install:
-```sh
+
+```bash
 $ npm install --global double-metaphone
 ```
 
-
 Use:
-```
+
+```text
 Usage: double-metaphone [options] string
 
 Options:
@@ -77,7 +82,7 @@ $ echo "Xavier" | double-metaphone
 
 On a MacBook Air, it runs about 390,000 op/s.
 
-```
+```text
   390 op/s » op/s * 1,000
 
            doublemetaphone
