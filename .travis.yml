@@ -1,13 +1,24 @@
 language: node_js
-script: npm run-script test-travis
 node_js:
-- '0.10'
-- '0.11'
-after_script: npm install coveralls@2.10.0 && cat ./coverage/lcov.info | coveralls
+- '4.0'
+- '5.0'
+- '7.0'
+sudo: false
+after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
-  provider: npm
-  email: tituswormer@gmail.com
-  api_key:
-    secure: CYGeMQzd9EqGim69tpoKmPBWaOAN9HQluMDrRo0tulhcccqXsGfv3ekxDngLdHtkGHFS/kjQBDQCUzFyYayT6hpdt3f1u5bpU/8L4Es4UYIXbkbHV3/dQ2pUaNZtYWUfNPDKWbFy5Hmz2O4wzRdn4291XqA1k7K839NyLmearOI=
-  on:
-    repo: wooorm/double-metaphone
+  - provider: npm
+    email: tituswormer@gmail.com
+    api_key:
+      secure: gmlPsHgxtLB5KYGMGAqbBe+h3XGvqp4VBnKjLHOeIvTYI8Di0Nofb7MrdnJrb3GnqEtezQyiM09PEkO80f7OJKINQIms1xgiotbC1oujuzPOZ2Wgbq83AHpj3M0CJIBTwfQjfZu77GJmvq4uVGYEmMBszVP5wlKJTwnRu5023m8=
+    on:
+      tags: true
+      node: '5.0'
+  - provider: releases
+    api_key:
+      secure: p6+1b1/lFM70svYv5V5337bKNMn6IVndw25hsA0NJwI5tUcLi2TMSFA9VRf8GdozGwhhGM3Fut5QwKCt3Pgj/nQcx6AzWx8ZciIhJYaYHOmys7tApESf/ZAbQUdxvE15ptJOx8OBQovzQ+kxE76BaBganLy4cIM6H5xUMbvGd/Q=
+    file:
+      - "double-metaphone.js"
+      - "double-metaphone.min.js"
+    on:
+      tags: true
+      node: '7.0'
