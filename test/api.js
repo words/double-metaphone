@@ -9,6 +9,18 @@ var m = require('..');
 test('api', function (t) {
   t.equal(typeof m, 'function', 'should be a `function`');
 
+  t.test('compatibility w/ natural', function (st) {
+    st.deepEqual(m('ptah'), ['PT', 'PT']);
+    st.deepEqual(m('ceasar'), ['SSR', 'SSR']);
+    st.deepEqual(m('ach'), ['AK', 'AK']);
+    st.deepEqual(m('chemical'), ['KMKL', 'KMKL']);
+    st.deepEqual(m('choral'), ['KRL', 'KRL']);
+
+    st.end();
+  });
+
+  t.deepEqual(m('alexander'), m('aleksander'), 'GH-2');
+
   t.deepEqual(m('HICCUPS'), m('HiCcUpS'), 'should ignore casing (1)');
   t.deepEqual(m('HiCcUpS'), m('hiccups'), 'should ignore casing (2)');
 
@@ -550,9 +562,13 @@ test('api', function (t) {
     }
   );
 
-  t.equal(m('AXC')[0], 'A', 'should drop XC');
-  t.equal(m('axx')[0], 'A', 'should drop XX');
-  t.equal(m('axe')[0], 'A', 'should drop X');
+  t.equal(m('AUX')[0], 'A', 'should drop `UX` in `AUX`');
+  t.equal(m('OUX')[0], 'A', 'should drop `UX` in `OUX`');
+  t.equal(m('breaux')[0], 'PR', 'should drop `aux` in `breaux`');
+
+  t.equal(m('AXC')[0], 'AKS', 'should *not* drop XC');
+  t.equal(m('axx')[0], 'AKS', 'should *not* drop XX');
+  t.equal(m('axe')[0], 'AKS', 'should *not* drop X');
   t.equal(m('zhao')[0], 'J', 'should transform ZH to J');
 
   t.test(

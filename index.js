@@ -1068,12 +1068,16 @@ function doubleMetaphone(value) {
       case 'X':
         /* French such as `breaux`. */
         if (
-          index === last ||
-          (
-            /* Bug: IAU and EAU also match by AU
-             * /IAU|EAU/.test(value.slice(index - 3, index)) || */
-            prev === 'U' &&
-            (characters[index - 2] === 'A' || characters[index - 2] === 'O')
+          !(
+            index === last &&
+            (
+              /* Bug: IAU and EAU also match by AU
+               * (/IAU|EAU/.test(value.slice(index - 3, index))) || */
+              (
+                prev === 'U' &&
+                (characters[index - 2] === 'A' || characters[index - 2] === 'O')
+              )
+            )
           )
         ) {
           primary += 'KS';
