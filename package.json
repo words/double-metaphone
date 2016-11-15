@@ -31,7 +31,7 @@
     "browserify": "^13.0.0",
     "esmangle": "^1.0.0",
     "execa": "^0.5.0",
-    "nyc": "^8.4.0",
+    "nyc": "^9.0.1",
     "remark-cli": "^2.0.0",
     "remark-preset-wooorm": "^1.0.0",
     "tape": "^4.4.0",
