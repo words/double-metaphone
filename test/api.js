@@ -1,11 +1,9 @@
 'use strict';
 
-/* Dependencies. */
 var assert = require('assert');
 var test = require('tape');
 var m = require('..');
 
-/* API. */
 test('api', function (t) {
   t.equal(typeof m, 'function', 'should be a `function`');
 

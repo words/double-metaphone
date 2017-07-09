@@ -1,12 +1,10 @@
 'use strict';
 
-/* Dependencies. */
 var PassThrough = require('stream').PassThrough;
 var test = require('tape');
 var execa = require('execa');
 var version = require('../package').version;
 
-/* CLI. */
 test('cli', function (t) {
   var input = new PassThrough();
 
