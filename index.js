@@ -82,7 +82,7 @@ function doubleMetaphone(value) {
   isGermanic = GERMANIC.test(value);
   characters = value.split('');
 
-  /* skip this at beginning of word. */
+  /* Skip this at beginning of word. */
   if (INITIAL_EXCEPTIONS.test(value)) {
     index++;
   }
