@@ -1,8 +1,7 @@
 language: node_js
 node_js:
 - '4.0'
-- '5.0'
-- '7.0'
+- '8.0'
 sudo: false
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
@@ -12,7 +11,7 @@ deploy:
       secure: gmlPsHgxtLB5KYGMGAqbBe+h3XGvqp4VBnKjLHOeIvTYI8Di0Nofb7MrdnJrb3GnqEtezQyiM09PEkO80f7OJKINQIms1xgiotbC1oujuzPOZ2Wgbq83AHpj3M0CJIBTwfQjfZu77GJmvq4uVGYEmMBszVP5wlKJTwnRu5023m8=
     on:
       tags: true
-      node: '5.0'
+      node: '4.0'
   - provider: releases
     api_key:
       secure: p6+1b1/lFM70svYv5V5337bKNMn6IVndw25hsA0NJwI5tUcLi2TMSFA9VRf8GdozGwhhGM3Fut5QwKCt3Pgj/nQcx6AzWx8ZciIhJYaYHOmys7tApESf/ZAbQUdxvE15ptJOx8OBQovzQ+kxE76BaBganLy4cIM6H5xUMbvGd/Q=
@@ -21,4 +20,4 @@ deploy:
       - "double-metaphone.min.js"
     on:
       tags: true
-      node: '7.0'
+      node: '8.0'
