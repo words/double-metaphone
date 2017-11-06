@@ -90,13 +90,13 @@ $ echo 'acceptingness' | stemmer | double-metaphone
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/double-metaphone.svg
+[travis-badge]: https://img.shields.io/travis/words/double-metaphone.svg
 
-[travis]: https://travis-ci.org/wooorm/double-metaphone
+[travis]: https://travis-ci.org/words/double-metaphone
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/double-metaphone.svg
+[codecov-badge]: https://img.shields.io/codecov/c/github/words/double-metaphone.svg
 
-[codecov]: https://codecov.io/github/wooorm/double-metaphone
+[codecov]: https://codecov.io/github/words/double-metaphone
 
 [license]: LICENSE
 
@@ -104,4 +104,4 @@ $ echo 'acceptingness' | stemmer | double-metaphone
 
 [source]: http://en.wikipedia.org/wiki/metaphone
 
-[stemmer]: https://github.com/wooorm/stemmer
+[stemmer]: https://github.com/words/stemmer

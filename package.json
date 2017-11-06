@@ -11,8 +11,9 @@
     "cli",
     "bin"
   ],
-  "repository": "https://github.com/wooorm/double-metaphone",
-  "bugs": "https://github.com/wooorm/double-metaphone/issues",
+  "homepage": "https://words.github.io/double-metaphone/",
+  "repository": "words/double-metaphone",
+  "bugs": "https://github.com/words/double-metaphone/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
