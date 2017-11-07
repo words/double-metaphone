@@ -71,17 +71,17 @@ $ echo 'acceptingness' | stemmer | double-metaphone
 
 ## Related
 
-*   [`metaphone`](https://github.com/wooorm/metaphone)
+*   [`metaphone`](https://github.com/words/metaphone)
     — Fast Metaphone implementation
-*   [`soundex-code`](https://github.com/wooorm/soundex-code)
+*   [`soundex-code`](https://github.com/words/soundex-code)
     — Fast Soundex implementation
-*   [`stemmer`](https://github.com/wooorm/stemmer)
+*   [`stemmer`](https://github.com/words/stemmer)
     — Porter Stemmer algorithm
-*   [`dice-coefficient`](https://github.com/wooorm/dice-coefficient)
+*   [`dice-coefficient`](https://github.com/words/dice-coefficient)
     — Sørensen–Dice coefficient
-*   [`levenshtein-edit-distance`](https://github.com/wooorm/levenshtein-edit-distance)
+*   [`levenshtein-edit-distance`](https://github.com/words/levenshtein-edit-distance)
     — Levenshtein edit distance
-*   [`syllable`](https://github.com/wooorm/syllable)
+*   [`syllable`](https://github.com/words/syllable)
     — Syllable count in an English word
 
 ## License
