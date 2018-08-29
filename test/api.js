@@ -32,7 +32,7 @@ test('api', function (t) {
   t.doesNotThrow(
     function () {
       'aeiouy'.split('').forEach(function (vowel) {
-        assert.equal(m(vowel)[0], 'A');
+        assert.strictEqual(m(vowel)[0], 'A');
       });
     },
     'should transform all initial vowels to A'
@@ -41,7 +41,7 @@ test('api', function (t) {
   t.doesNotThrow(
     function () {
       'aeiouy'.split('').forEach(function (vowel) {
-        assert.equal(m('b' + vowel)[0].length, 1);
+        assert.strictEqual(m('b' + vowel)[0].length, 1);
       });
     },
     'should drop all non-initial vowels'

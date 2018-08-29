@@ -206,13 +206,13 @@ function doubleMetaphone(value) {
             GREEK_CH.test(value.slice(index - 2, index + 4)) ||
             (nextnext === 'T' || nextnext === 'S') ||
             (
-                (
-                    index === 0 ||
+              (
+                index === 0 ||
                     prev === 'A' ||
                     prev === 'E' ||
                     prev === 'O' ||
                     prev === 'U'
-                ) &&
+              ) &&
                 /* Such as `wachtler`, `weschsler`, but not
                  * `tichner`. */
                 CH_FOR_KH.test(nextnext)
@@ -542,7 +542,7 @@ function doubleMetaphone(value) {
           next === 'I' ||
           next === 'Y' ||
           (
-              (prev === 'A' || prev === 'O') &&
+            (prev === 'A' || prev === 'O') &&
               next === 'G' &&
               nextnext === 'I'
           )
