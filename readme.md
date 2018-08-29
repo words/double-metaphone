@@ -13,25 +13,25 @@ npm install double-metaphone
 Use:
 
 ```js
-var doubleMetaphone = require('double-metaphone');
+var doubleMetaphone = require('double-metaphone')
 
-doubleMetaphone('michael'); //=> ['MKL', 'MXL']
-doubleMetaphone('crevalle'); //=> ['KRFL', 'KRF']
-doubleMetaphone('Filipowitz'); //=> ['FLPTS', 'FLPFX']
-doubleMetaphone('Xavier'); //=> ['SF', 'SFR']
-doubleMetaphone('delicious'); //=> ['TLSS', 'TLXS']
-doubleMetaphone('acceptingness'); //=> ['AKSPTNNS', 'AKSPTNKNS']
-doubleMetaphone('allegrettos'); //=> ['ALKRTS', 'AKRTS']
+doubleMetaphone('michael') // => ['MKL', 'MXL']
+doubleMetaphone('crevalle') // => ['KRFL', 'KRF']
+doubleMetaphone('Filipowitz') // => ['FLPTS', 'FLPFX']
+doubleMetaphone('Xavier') // => ['SF', 'SFR']
+doubleMetaphone('delicious') // => ['TLSS', 'TLXS']
+doubleMetaphone('acceptingness') // => ['AKSPTNNS', 'AKSPTNKNS']
+doubleMetaphone('allegrettos') // => ['ALKRTS', 'AKRTS']
 ```
 
 With [stemmer][]:
 
 ```js
-var doubleMetaphone = require('double-metaphone');
-var stemmer = require('stemmer');
+var doubleMetaphone = require('double-metaphone')
+var stemmer = require('stemmer')
 
-doubleMetaphone(stemmer('acceptingness')); //=> [ 'AKSPTNK', 'AKSPTNK' ]
-doubleMetaphone(stemmer('allegrettos')); //=> [ 'ALKRT', 'AKRT' ]
+doubleMetaphone(stemmer('acceptingness')) // => [ 'AKSPTNK', 'AKSPTNK' ]
+doubleMetaphone(stemmer('allegrettos')) // => [ 'ALKRT', 'AKRT' ]
 ```
 
 ## CLI
