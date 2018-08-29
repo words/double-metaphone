@@ -98,7 +98,7 @@ $ echo 'acceptingness' | stemmer | double-metaphone
 
 [codecov]: https://codecov.io/github/words/double-metaphone
 
-[license]: LICENSE
+[license]: license
 
 [author]: http://wooorm.com
 
