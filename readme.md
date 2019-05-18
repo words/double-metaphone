@@ -1,4 +1,9 @@
-# double-metaphone [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+# double-metaphone
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][size-badge]][size]
 
 [Double metaphone algorithm][source].
 
@@ -90,13 +95,21 @@ $ echo 'acceptingness' | stemmer | double-metaphone
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/words/double-metaphone.svg
+[build-badge]: https://img.shields.io/travis/words/double-metaphone.svg
 
-[travis]: https://travis-ci.org/words/double-metaphone
+[build]: https://travis-ci.org/words/double-metaphone
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/words/double-metaphone.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/words/double-metaphone.svg
 
-[codecov]: https://codecov.io/github/words/double-metaphone
+[coverage]: https://codecov.io/github/words/double-metaphone
+
+[downloads-badge]: https://img.shields.io/npm/dm/double-metaphone.svg
+
+[downloads]: https://www.npmjs.com/package/double-metaphone
+
+[size-badge]: https://img.shields.io/bundlephobia/minzip/double-metaphone.svg
+
+[size]: https://bundlephobia.com/result?p=double-metaphone
 
 [license]: license
 
