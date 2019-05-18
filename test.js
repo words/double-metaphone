@@ -138,8 +138,8 @@ test('api', function(t) {
     'should transform the C to K, when followed by H, and the given value starts with `von `'
   )
 
-  /* This might be a bug, not sure. Now other C's will transform to
-   * K in a string sarting with `sch`. */
+  // This might be a bug, not sure.
+  // Now other C's will transform to K in a string sarting with `sch`.
   t.equal(
     m('schooner')[0].charAt(1),
     'K',
