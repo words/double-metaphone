@@ -7,15 +7,15 @@
 
 [Double metaphone algorithm][source].
 
-## API
+## Install
 
-Install:
+[npm][]:
 
-```bash
+```sh
 npm install double-metaphone
 ```
 
-Use:
+## API
 
 ```js
 var doubleMetaphone = require('double-metaphone')
@@ -40,14 +40,6 @@ doubleMetaphone(stemmer('allegrettos')) // => [ 'ALKRT', 'AKRT' ]
 ```
 
 ## CLI
-
-Install:
-
-```sh
-npm install -g double-metaphone
-```
-
-Use:
 
 ```txt
 Usage: double-metaphone [options] <words...>
@@ -110,6 +102,8 @@ $ echo 'acceptingness' | stemmer | double-metaphone
 [size-badge]: https://img.shields.io/bundlephobia/minzip/double-metaphone.svg
 
 [size]: https://bundlephobia.com/result?p=double-metaphone
+
+[npm]: https://www.npmjs.com
 
 [license]: license
 
