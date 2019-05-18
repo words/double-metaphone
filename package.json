@@ -62,9 +62,6 @@
   "xo": {
     "prettier": true,
     "esnext": false,
-    "rules": {
-      "complexity": "off"
-    },
     "ignores": [
       "double-metaphone.js"
     ]

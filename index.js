@@ -49,6 +49,7 @@ var hForS = /EIM|OEK|OLM|OLZ/
 var dutchSch = /E[DMNR]|UY|OO/
 
 // Get the phonetics according to the Double Metaphone algorithm from a value.
+// eslint-disable-next-line complexity
 function doubleMetaphone(value) {
   var primary = ''
   var secondary = ''
