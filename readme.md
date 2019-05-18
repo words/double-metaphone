@@ -100,8 +100,8 @@ $ echo 'acceptingness' | stemmer | double-metaphone
 
 [license]: license
 
-[author]: http://wooorm.com
+[author]: https://wooorm.com
 
-[source]: http://en.wikipedia.org/wiki/metaphone
+[source]: https://en.wikipedia.org/wiki/metaphone
 
 [stemmer]: https://github.com/words/stemmer
