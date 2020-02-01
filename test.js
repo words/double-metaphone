@@ -1,9 +1,9 @@
 'use strict'
 
+var exec = require('child_process').exec
 var PassThrough = require('stream').PassThrough
 var assert = require('assert')
 var test = require('tape')
-var execa = require('execa')
 var version = require('./package.json').version
 var m = require('.')
 
@@ -775,33 +775,45 @@ test('cli', function(t) {
 
   t.plan(7)
 
-  execa.stdout('./cli.js', ['michael']).then(function(result) {
-    t.equal(result, 'MKL	MXL', 'argument')
+  exec('./cli.js michael', function(err, stdout, stderr) {
+    t.deepEqual([err, stdout, stderr], [null, 'MKL\tMXL\n', ''], 'one')
   })
 
-  execa.stdout('./cli.js', ['detestable', 'vileness']).then(function(result) {
-    t.equal(result, 'TTSTPL\tTTSTPL FLNS\tFLNS', 'arguments')
+  exec('./cli.js detestable vileness', function(err, stdout, stderr) {
+    t.deepEqual(
+      [err, stdout, stderr],
+      [null, 'TTSTPL\tTTSTPL FLNS\tFLNS\n', ''],
+      'two'
+    )
   })
 
-  execa.stdout('./cli.js', {input: input}).then(function(result) {
-    t.equal(result, 'TTSTPL\tTTSTPL FLNS\tFLNS', 'stdin')
+  var subprocess = exec('./cli.js', function(err, stdout, stderr) {
+    t.deepEqual(
+      [err, stdout, stderr],
+      [null, 'TTSTPL\tTTSTPL FLNS\tFLNS\n', ''],
+      'stdin'
+    )
   })
 
+  input.pipe(subprocess.stdin)
   input.write('detestable')
-
   setImmediate(function() {
     input.end(' vileness')
   })
 
   helps.forEach(function(flag) {
-    execa.stdout('./cli.js', [flag]).then(function(result) {
-      t.ok(/\s+Usage: double-metaphone/.test(result), flag)
+    exec('./cli.js ' + flag, function(err, stdout, stderr) {
+      t.deepEqual(
+        [err, /\sUsage: double-metaphone/.test(stdout), stderr],
+        [null, true, ''],
+        flag
+      )
     })
   })
 
   versions.forEach(function(flag) {
-    execa.stdout('./cli.js', [flag]).then(function(result) {
-      t.equal(result, version, flag)
+    exec('./cli.js ' + flag, function(err, stdout, stderr) {
+      t.deepEqual([err, stdout, stderr], [null, version + '\n', ''], flag)
     })
   })
 })
