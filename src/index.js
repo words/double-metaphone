@@ -1,8 +1,6 @@
-'use strict'
-
 /* eslint-env browser */
 
-var doubleMetaphone = require('double-metaphone')
+import {doubleMetaphone} from 'double-metaphone'
 
 var $input = document.querySelector('input')
 var $output = document.querySelector('output')
