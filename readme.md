@@ -87,9 +87,9 @@ $ echo 'acceptingness' | stemmer | double-metaphone
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/words/double-metaphone.svg
+[build-badge]: https://github.com/words/double-metaphone/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/words/double-metaphone
+[build]: https://github.com/words/double-metaphone/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/words/double-metaphone.svg
 
