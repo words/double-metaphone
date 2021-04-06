@@ -1,7 +1,3 @@
-'use strict'
-
-module.exports = doubleMetaphone
-
 // Match vowels (including `Y`).
 var vowels = /[AEIOUY]/
 
@@ -50,7 +46,7 @@ var dutchSch = /E[DMNR]|UY|OO/
 
 // Get the phonetics according to the Double Metaphone algorithm from a value.
 // eslint-disable-next-line complexity
-function doubleMetaphone(value) {
+export function doubleMetaphone(value) {
   var primary = ''
   var secondary = ''
   var index = 0

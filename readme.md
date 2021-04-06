@@ -9,6 +9,9 @@
 
 ## Install
 
+This package is ESM only: Node 12+ is needed to use it and it must be `import`ed
+instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -17,8 +20,11 @@ npm install double-metaphone
 
 ## API
 
+This package exports the following identifiers: `doubleMetaphone`.
+There is no default export.
+
 ```js
-var doubleMetaphone = require('double-metaphone')
+import {doubleMetaphone} from 'double-metaphone'
 
 doubleMetaphone('michael') // => ['MKL', 'MXL']
 doubleMetaphone('crevalle') // => ['KRFL', 'KRF']
@@ -32,8 +38,8 @@ doubleMetaphone('allegrettos') // => ['ALKRTS', 'AKRTS']
 With [stemmer][]:
 
 ```js
-var doubleMetaphone = require('double-metaphone')
-var stemmer = require('stemmer')
+import {doubleMetaphone} from 'double-metaphone'
+import {stemmer} from 'stemmer'
 
 doubleMetaphone(stemmer('acceptingness')) // => [ 'AKSPTNK', 'AKSPTNK' ]
 doubleMetaphone(stemmer('allegrettos')) // => [ 'ALKRT', 'AKRT' ]

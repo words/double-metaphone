@@ -1,8 +1,5 @@
 .DS_Store
 *.log
-.nyc_output/
 coverage/
 node_modules/
-double-metaphone.js
-double-metaphone.min.js
 yarn.lock

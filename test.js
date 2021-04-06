@@ -1,11 +1,14 @@
-'use strict'
+import assert from 'assert'
+import {exec} from 'child_process'
+import fs from 'fs'
+import {URL} from 'url'
+import {PassThrough} from 'stream'
+import {doubleMetaphone as m} from './index.js'
+import test from 'tape'
 
-var exec = require('child_process').exec
-var PassThrough = require('stream').PassThrough
-var assert = require('assert')
-var test = require('tape')
-var version = require('./package.json').version
-var m = require('.')
+var pack = JSON.parse(
+  String(fs.readFileSync(new URL('./package.json', import.meta.url)))
+)
 
 test('api', function (t) {
   t.equal(typeof m, 'function', 'should be a `function`')
@@ -825,12 +828,12 @@ test('cli', function (t) {
   })
 
   exec('./cli.js -v', function (error, stdout, stderr) {
-    t.deepEqual([error, stdout, stderr], [null, version + '\n', ''], '-v')
+    t.deepEqual([error, stdout, stderr], [null, pack.version + '\n', ''], '-v')
   })
   exec('./cli.js --version', function (error, stdout, stderr) {
     t.deepEqual(
       [error, stdout, stderr],
-      [null, version + '\n', ''],
+      [null, pack.version + '\n', ''],
       '--version'
     )
   })
