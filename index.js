@@ -44,20 +44,31 @@ var hForS = /EIM|OEK|OLM|OLZ/
 // or `SK`.
 var dutchSch = /E[DMNR]|UY|OO/
 
-// Get the phonetics according to the Double Metaphone algorithm from a value.
-// eslint-disable-next-line complexity
+/**
+ * Get the phonetics according to the Double Metaphone algorithm from a value.
+ *
+ * @param {string} value
+ * @returns {[string, string]}
+ */
 export function doubleMetaphone(value) {
   var primary = ''
   var secondary = ''
   var index = 0
   var length = value.length
   var last = length - 1
+  /** @type {boolean} */
   var isSlavoGermanic
+  /** @type {boolean} */
   var isGermanic
+  /** @type {string} */
   var subvalue
+  /** @type {string} */
   var next
+  /** @type {string} */
   var previous
+  /** @type {string} */
   var nextnext
+  /** @type {Array.<string>} */
   var characters
 
   value = String(value).toUpperCase() + '     '
@@ -126,8 +137,7 @@ export function doubleMetaphone(value) {
           nextnext !== 'I' &&
           !vowels.test(characters[index - 2]) &&
           (nextnext !== 'E' ||
-            (subvalue =
-              value.slice(index - 2, index + 4) &&
+            ((subvalue = value.slice(index - 2, index + 4)) &&
               (subvalue === 'BACHER' || subvalue === 'MACHER')))
         ) {
           primary += 'K'
