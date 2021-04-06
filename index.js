@@ -60,7 +60,7 @@ function doubleMetaphone(value) {
   var isGermanic
   var subvalue
   var next
-  var prev
+  var previous
   var nextnext
   var characters
 
@@ -82,7 +82,7 @@ function doubleMetaphone(value) {
   }
 
   while (index < length) {
-    prev = characters[index - 1]
+    previous = characters[index - 1]
     next = characters[index + 1]
     nextnext = characters[index + 2]
 
@@ -125,7 +125,7 @@ function doubleMetaphone(value) {
       case 'C':
         // Various Germanic:
         if (
-          prev === 'A' &&
+          previous === 'A' &&
           next === 'H' &&
           nextnext !== 'I' &&
           !vowels.test(characters[index - 2]) &&
@@ -186,10 +186,10 @@ function doubleMetaphone(value) {
             nextnext === 'T' ||
             nextnext === 'S' ||
             ((index === 0 ||
-              prev === 'A' ||
-              prev === 'E' ||
-              prev === 'O' ||
-              prev === 'U') &&
+              previous === 'A' ||
+              previous === 'E' ||
+              previous === 'O' ||
+              previous === 'U') &&
               // Such as `wachtler`, `weschsler`, but not `tichner`.
               chForKh.test(nextnext))
           ) {
@@ -242,7 +242,7 @@ function doubleMetaphone(value) {
 
             // Such as `Accident`, `Accede`, `Succeed`.
             if (
-              (index === 1 && prev === 'A') ||
+              (index === 1 && previous === 'A') ||
               subvalue === 'UCCEE' ||
               subvalue === 'UCCES'
             ) {
@@ -363,7 +363,7 @@ function doubleMetaphone(value) {
         break
       case 'G':
         if (next === 'H') {
-          if (index > 0 && !vowels.test(prev)) {
+          if (index > 0 && !vowels.test(previous)) {
             primary += 'K'
             secondary += 'K'
             index += 2
@@ -404,10 +404,14 @@ function doubleMetaphone(value) {
           }
 
           // Such as `laugh`, `McLaughlin`, `cough`, `gough`, `rough`, `tough`.
-          if (index > 2 && prev === 'U' && gForF.test(characters[index - 3])) {
+          if (
+            index > 2 &&
+            previous === 'U' &&
+            gForF.test(characters[index - 3])
+          ) {
             primary += 'F'
             secondary += 'F'
-          } else if (index > 0 && prev !== 'I') {
+          } else if (index > 0 && previous !== 'I') {
             primary += 'K'
             secondary += 'K'
           }
@@ -460,10 +464,10 @@ function doubleMetaphone(value) {
         // -ger-, -gy-.
         if (
           (value.slice(index + 1, index + 3) === 'ER' &&
-            prev !== 'I' &&
-            prev !== 'E' &&
+            previous !== 'I' &&
+            previous !== 'E' &&
             !initialAngerException.test(value.slice(0, 6))) ||
-          (next === 'Y' && !gForKj.test(prev))
+          (next === 'Y' && !gForKj.test(previous))
         ) {
           primary += 'K'
           secondary += 'J'
@@ -477,7 +481,9 @@ function doubleMetaphone(value) {
           next === 'E' ||
           next === 'I' ||
           next === 'Y' ||
-          ((prev === 'A' || prev === 'O') && next === 'G' && nextnext === 'I')
+          ((previous === 'A' || previous === 'O') &&
+            next === 'G' &&
+            nextnext === 'I')
         ) {
           // Obvious Germanic.
           if (value.slice(index + 1, index + 3) === 'ET' || isGermanic) {
@@ -487,11 +493,8 @@ function doubleMetaphone(value) {
             primary += 'J'
 
             // Always soft if French ending.
-            if (value.slice(index + 1, index + 5) === 'IER ') {
-              secondary += 'J'
-            } else {
-              secondary += 'K'
-            }
+            secondary +=
+              value.slice(index + 1, index + 5) === 'IER ' ? 'J' : 'K'
           }
 
           index += 2
@@ -511,7 +514,7 @@ function doubleMetaphone(value) {
         break
       case 'H':
         // Only keep if first & before vowel or btw. 2 vowels.
-        if (vowels.test(next) && (index === 0 || vowels.test(prev))) {
+        if (vowels.test(next) && (index === 0 || vowels.test(previous))) {
           primary += 'H'
           secondary += 'H'
 
@@ -556,16 +559,16 @@ function doubleMetaphone(value) {
         } else if (
           !isSlavoGermanic &&
           (next === 'A' || next === 'O') &&
-          vowels.test(prev)
+          vowels.test(previous)
         ) {
           primary += 'J'
           secondary += 'H'
         } else if (index === last) {
           primary += 'J'
         } else if (
-          prev !== 'S' &&
-          prev !== 'K' &&
-          prev !== 'L' &&
+          previous !== 'S' &&
+          previous !== 'K' &&
+          previous !== 'L' &&
           !jForJException.test(next)
         ) {
           primary += 'J'
@@ -593,9 +596,10 @@ function doubleMetaphone(value) {
           // Spanish such as `cabrillo`, `gallegos`.
           if (
             (index === length - 3 &&
-              ((prev === 'A' && nextnext === 'E') ||
-                (prev === 'I' && (nextnext === 'O' || nextnext === 'A')))) ||
-            (prev === 'A' &&
+              ((previous === 'A' && nextnext === 'E') ||
+                (previous === 'I' &&
+                  (nextnext === 'O' || nextnext === 'A')))) ||
+            (previous === 'A' &&
               nextnext === 'E' &&
               (characters[last] === 'A' ||
                 characters[last] === 'O' ||
@@ -619,7 +623,7 @@ function doubleMetaphone(value) {
         if (
           next === 'M' ||
           // Such as `dumb`, `thumb`.
-          (prev === 'U' &&
+          (previous === 'U' &&
             next === 'B' &&
             (index + 1 === last || value.slice(index + 2, index + 4) === 'ER'))
         ) {
@@ -684,7 +688,7 @@ function doubleMetaphone(value) {
         if (
           index === last &&
           !isSlavoGermanic &&
-          prev === 'E' &&
+          previous === 'E' &&
           characters[index - 2] === 'I' &&
           characters[index - 4] !== 'M' &&
           characters[index - 3] !== 'E' &&
@@ -705,7 +709,7 @@ function doubleMetaphone(value) {
         break
       case 'S':
         // Special cases `island`, `isle`, `carlisle`, `carlysle`.
-        if (next === 'L' && (prev === 'I' || prev === 'Y')) {
+        if (next === 'L' && (previous === 'I' || previous === 'Y')) {
           index++
 
           break
@@ -930,13 +934,13 @@ function doubleMetaphone(value) {
 
         // `Arnow` should match `Arnoff`.
         if (
-          ((prev === 'E' || prev === 'O') &&
+          ((previous === 'E' || previous === 'O') &&
             next === 'S' &&
             nextnext === 'K' &&
             (characters[index + 3] === 'I' || characters[index + 3] === 'Y')) ||
           // Maybe a bug? Shouldn't this be general Germanic?
           value.slice(0, 3) === 'SCH' ||
-          (index === last && vowels.test(prev))
+          (index === last && vowels.test(previous))
         ) {
           secondary += 'F'
           index++
@@ -967,7 +971,7 @@ function doubleMetaphone(value) {
             index === last &&
             // Bug: IAU and EAU also match by AU
             // (/IAU|EAU/.test(value.slice(index - 3, index))) ||
-            prev === 'U' &&
+            previous === 'U' &&
             (characters[index - 2] === 'A' || characters[index - 2] === 'O')
           )
         ) {
@@ -993,7 +997,7 @@ function doubleMetaphone(value) {
         } else if (
           (next === 'Z' &&
             (nextnext === 'A' || nextnext === 'I' || nextnext === 'O')) ||
-          (isSlavoGermanic && index > 0 && prev !== 'T')
+          (isSlavoGermanic && index > 0 && previous !== 'T')
         ) {
           primary += 'S'
           secondary += 'TS'
