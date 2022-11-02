@@ -1,14 +1,14 @@
-import assert from 'assert'
-import {exec} from 'child_process'
-import fs from 'fs'
-import {URL} from 'url'
-import {PassThrough} from 'stream'
-import {doubleMetaphone as m} from './index.js'
+import assert from 'node:assert'
+import {exec} from 'node:child_process'
+import fs from 'node:fs'
+import {URL} from 'node:url'
+import {PassThrough} from 'node:stream'
 import test from 'tape'
+import {doubleMetaphone as m} from './index.js'
 
 /** @type {Object.<string, unknown>} */
 var pack = JSON.parse(
-  String(fs.readFileSync(new URL('./package.json', import.meta.url)))
+  String(fs.readFileSync(new URL('package.json', import.meta.url)))
 )
 
 test('api', function (t) {
