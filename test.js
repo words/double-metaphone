@@ -7,7 +7,7 @@ import test from 'tape'
 import {doubleMetaphone as m} from './index.js'
 
 /** @type {Object.<string, unknown>} */
-var pack = JSON.parse(
+const pack = JSON.parse(
   String(fs.readFileSync(new URL('package.json', import.meta.url)))
 )
 
@@ -57,16 +57,16 @@ test('api', function (t) {
   t.equal(m('Xavier')[0].charAt(0), 'S', 'should transform the initial X to S')
 
   t.doesNotThrow(function () {
-    var vowels = 'aeiouy'
-    var index = -1
+    const vowels = 'aeiouy'
+    let index = -1
     while (++index < vowels.length) {
       assert.strictEqual(m(vowels.charAt(index))[0], 'A')
     }
   }, 'should transform all initial vowels to A')
 
   t.doesNotThrow(function () {
-    var vowels = 'aeiouy'
-    var index = -1
+    const vowels = 'aeiouy'
+    let index = -1
     while (++index < vowels.length) {
       assert.strictEqual(m('b' + vowels.charAt(index))[0].length, 1)
     }
@@ -217,7 +217,7 @@ test('api', function (t) {
   t.test(
     'should transform the C to X and K, when followed by H',
     function (st) {
-      var phonetics = m('achievement')
+      const phonetics = m('achievement')
 
       st.equal(phonetics[0].charAt(1), 'X')
       st.equal(phonetics[1].charAt(1), 'K')
@@ -229,7 +229,7 @@ test('api', function (t) {
   t.test(
     'should transform the C to S and X, when followed by Z and not preceded by WI',
     function (st) {
-      var phonetics = m('czerny')
+      const phonetics = m('czerny')
 
       st.equal(phonetics[0].charAt(0), 'S')
       st.equal(phonetics[1].charAt(0), 'X')
@@ -247,7 +247,7 @@ test('api', function (t) {
   t.test(
     'should transform the C to KS, when in an initial ACC, followed by either E, I, or H (but not HU)',
     function (st) {
-      var phonetics = m('accident')
+      let phonetics = m('accident')
 
       st.equal(phonetics[0].charAt(1), 'K')
       st.equal(phonetics[0].charAt(2), 'S')
@@ -262,7 +262,7 @@ test('api', function (t) {
   )
 
   t.test('should transform the C to KS, when in UCCEE or UCCES', function (st) {
-    var phonetics = m('succeed')
+    const phonetics = m('succeed')
 
     st.equal(phonetics[0].charAt(1), 'K')
     st.equal(phonetics[0].charAt(2), 'S')
@@ -294,7 +294,7 @@ test('api', function (t) {
   t.test(
     'should transform the C to S and X, when followed by I and either E, or O',
     function (st) {
-      var phonetics = m('ancient')
+      let phonetics = m('ancient')
 
       st.equal(phonetics[0].charAt(2), 'S')
       st.equal(phonetics[1].charAt(2), 'X')
@@ -363,7 +363,7 @@ test('api', function (t) {
   t.test(
     'should transform GN to KN and N, when preceded by a vowel and ^, and not Slavo-Germanic',
     function (st) {
-      var phonetics = m('agnize')
+      const phonetics = m('agnize')
 
       st.equal(phonetics[0].slice(0, 3), 'AKN')
       st.equal(phonetics[1].slice(0, 2), 'AN')
@@ -381,7 +381,7 @@ test('api', function (t) {
   t.test(
     'should transform GN to N and KN, when not followed by EY and Y, and not Slavo-Germanic',
     function (st) {
-      var phonetics = m('acceptingness')
+      const phonetics = m('acceptingness')
 
       st.equal(phonetics[0].slice(-3), 'NNS')
       st.equal(phonetics[1].slice(-4), 'NKNS')
@@ -395,7 +395,7 @@ test('api', function (t) {
   t.test(
     'should transform an initial GY., GES, GEP, GEB, GEL, GEY, GIB, GIL, GIN, GIE, GEI, and GER to K and J',
     function (st) {
-      var phonetics = m('Gerben')
+      const phonetics = m('Gerben')
 
       st.equal(phonetics[0].charAt(0), 'K')
       st.equal(phonetics[1].charAt(0), 'J')
@@ -407,7 +407,7 @@ test('api', function (t) {
   t.test(
     'should transform GER to K and J, when not in DANGER, RANGER, and MANGER, and not preceded by E and I',
     function (st) {
-      var phonetics = m('auger')
+      const phonetics = m('auger')
 
       st.equal(phonetics[0].charAt(1), 'K')
       st.equal(phonetics[1].charAt(1), 'J')
@@ -419,7 +419,7 @@ test('api', function (t) {
   t.test(
     'should transform GY to K and J, when not preceded by E, I, R, and O',
     function (st) {
-      var phonetics = m('bulgy')
+      const phonetics = m('bulgy')
 
       st.equal(phonetics[0].charAt(2), 'K')
       st.equal(phonetics[1].charAt(2), 'J')
@@ -452,7 +452,7 @@ test('api', function (t) {
   t.test(
     'should transform G to J and K, when followed by E, I, or Y, or preceded by A or O and followed by GI',
     function (st) {
-      var phonetics = m('biaggi')
+      const phonetics = m('biaggi')
 
       st.equal(phonetics[0].charAt(1), 'J')
       st.equal(phonetics[1].charAt(1), 'K')
@@ -482,7 +482,7 @@ test('api', function (t) {
   )
 
   t.test('should transform the J to J and H, when in JOSE', function (st) {
-    var phonetics = m('Joseph')
+    const phonetics = m('Joseph')
 
     st.equal(phonetics[0].charAt(0), 'J')
     st.equal(phonetics[1].charAt(0), 'H')
@@ -491,7 +491,7 @@ test('api', function (t) {
   })
 
   t.test('should transform the J to J and H, when in JOSE', function (st) {
-    var phonetics = m('Jankelowicz')
+    const phonetics = m('Jankelowicz')
 
     st.equal(phonetics[0].charAt(0), 'J')
     st.equal(phonetics[1].charAt(0), 'A')
@@ -502,7 +502,7 @@ test('api', function (t) {
   t.test(
     'should transform J to J and H, when preceded by a vowel, followed by A or O, and not Slavo-Germanic',
     function (st) {
-      var phonetics = m('bajador')
+      const phonetics = m('bajador')
 
       st.equal(phonetics[0].charAt(1), 'J')
       st.equal(phonetics[1].charAt(1), 'H')
@@ -512,7 +512,7 @@ test('api', function (t) {
   )
 
   t.test('should both keep and drop a final J', function (st) {
-    var phonetics = m('svaraj')
+    const phonetics = m('svaraj')
 
     st.equal(phonetics[0], 'SFRJ')
     st.equal(phonetics[1], 'SFR')
@@ -592,7 +592,7 @@ test('api', function (t) {
   t.test(
     'should transform the S to X and S in an initial SUGAR',
     function (st) {
-      var phonetics = m('sugar')
+      const phonetics = m('sugar')
 
       st.equal(phonetics[0].charAt(0), 'X')
       st.equal(phonetics[1].charAt(0), 'S')
@@ -783,7 +783,7 @@ test('api', function (t) {
 })
 
 test('cli', function (t) {
-  var input = new PassThrough()
+  const input = new PassThrough()
 
   t.plan(7)
 
@@ -799,7 +799,7 @@ test('cli', function (t) {
     )
   })
 
-  var subprocess = exec('./cli.js', function (error, stdout, stderr) {
+  const subprocess = exec('./cli.js', function (error, stdout, stderr) {
     t.deepEqual(
       [error, stdout, stderr],
       [null, 'TTSTPL\tTTSTPL FLNS\tFLNS\n', ''],
