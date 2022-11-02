@@ -48,7 +48,9 @@ const dutchSch = /E[DMNR]|UY|OO/
  * Get the phonetics according to the Double Metaphone algorithm from a value.
  *
  * @param {string} value
+ *   Value to use.
  * @returns {[string, string]}
+ *   Double metaphone codes for `value`.
  */
 // eslint-disable-next-line complexity
 export function doubleMetaphone(value) {
