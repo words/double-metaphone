@@ -807,6 +807,7 @@ test('cli', function (t) {
     )
   })
 
+  assert(subprocess.stdin, 'expected `stdin` on child process')
   input.pipe(subprocess.stdin)
   input.write('detestable')
   setImmediate(function () {
