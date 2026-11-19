@@ -29,7 +29,7 @@ const initialGForKj = /Y[\s\S]|E[BILPRSY]|I[BELN]/
 const initialAngerException = /^[DMR]ANGER/
 
 // Match values which when following `GY`, do not sound like `K` or `J`.
-const gForKj = /[EGIR]/
+const gForKj = /[EIOR]/
 
 // Match values which when following `J`, do not sound `J`.
 const jForJException = /[LTKSNMBZ]/
@@ -122,6 +122,7 @@ export function doubleMetaphone(value) {
       case 'C':
         // Various Germanic:
         if (
+          index > 1 &&
           previous === 'A' &&
           next === 'H' &&
           nextnext !== 'I' &&
@@ -274,9 +275,7 @@ export function doubleMetaphone(value) {
         // Italian.
         if (
           next === 'I' &&
-          // Bug: The original algorithm also calls for A (as in CIA), which is
-          // already taken care of above.
-          (nextnext === 'E' || nextnext === 'O')
+          (nextnext === 'E' || nextnext === 'O' || nextnext === 'A')
         ) {
           primary += 'S'
           secondary += 'X'
@@ -572,8 +571,10 @@ export function doubleMetaphone(value) {
         ) {
           primary += 'J'
           secondary += 'J'
-          // It could happen.
-        } else if (next === 'J') {
+        }
+
+        // It could happen.
+        if (next === 'J') {
           index++
         }
 
@@ -690,9 +691,10 @@ export function doubleMetaphone(value) {
           !isSlavoGermanic &&
           previous === 'E' &&
           characters[index - 2] === 'I' &&
-          characters[index - 4] !== 'M' &&
-          characters[index - 3] !== 'E' &&
-          characters[index - 3] !== 'A'
+          !(
+            characters[index - 4] === 'M' &&
+            (characters[index - 3] === 'E' || characters[index - 3] === 'A')
+          )
         ) {
           secondary += 'R'
         } else {

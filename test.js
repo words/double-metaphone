@@ -762,6 +762,21 @@ test('api', async function (t) {
 
   assert.equal(m('zz')[0], 'S', 'should transform ZZ to S')
   assert.equal(m('z')[0], 'S', 'should transform Z to S')
+
+  await t.test('should match the original algorithm', function () {
+    // Values from the C++ source by Lawrence Philips (`dmetaph.cpp`), and
+    // equal to Apache Commons Codec.
+    assert.deepEqual(m('achy'), ['AX', 'AK'], 'ACH at start is not Germanic')
+    assert.deepEqual(m('Achaean'), ['AKN', 'AXN'], 'CHAE after ACH at start')
+    assert.deepEqual(m('Patricia'), ['PTRS', 'PTRX'], 'CIA (1)')
+    assert.deepEqual(m('Garcia'), ['KRS', 'KRX'], 'CIA (2)')
+    assert.deepEqual(m('biology'), ['PLJ', 'PLK'], 'OGY (1)')
+    assert.deepEqual(m('geology'), ['JLJ', 'KLK'], 'OGY (2)')
+    assert.deepEqual(m('ambier'), ['AMP', 'AMPR'], 'IER, not after ME or MA')
+    assert.deepEqual(m('Hochmeier'), ['HKMR', 'HKMR'], 'IER after ME')
+    assert.deepEqual(m('hajj'), ['HJ', 'HJ'], 'JJ (1)')
+    assert.deepEqual(m('hajji'), ['HJ', 'HJ'], 'JJ (2)')
+  })
 })
 
 test('cli', async function () {
